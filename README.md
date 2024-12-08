@@ -1,16 +1,26 @@
 # Advancements in Eye Health Monitoring and Care
 
-Welcome to the **OptiTech** repository! This project showcases a **Multi-Modal AI System for Eye Care and Monitoring** with cutting-edge features like cataract detection, real-time eye exercises, eye fatigue detection, pupil tracking, and more. 
+Welcome to the **OptiTech** repository! This project presents a **Multi-Modal AI System for Eye Care and Monitoring** with innovative features such as cataract detection, real-time eye exercises, eye fatigue detection, pupil tracking, and more.
 
+---
 
 
 ---
 
 ## Project Overview
-The **OptiTech** system integrates Artificial Intelligence, Machine Learning, and Computer Vision to enhance eye health. It provides real-time insights and solutions for eye care challenges, delivering tools for accurate diagnostics and personalized health monitoring.
+The **OptiTech** system integrates Artificial Intelligence, Machine Learning, and Computer Vision to enhance eye health. It delivers real-time insights and solutions for eye care challenges, offering tools for accurate diagnostics and personalized health monitoring.
 
-**Research Question:**
+**Research Question:❓**
 > How can a multi-modal AI system improve eye care by delivering accurate cataract detection, eye fatigue monitoring, real-time exercises, and pupil tracking directly to users, enhancing efficiency and satisfaction?
+
+---
+
+## Team Members👥
+Our dedicated team of innovators includes:
+- **IT21334924 - Herath H. M. S. C.**: Cataract detection component.
+- **IT21263880 - Swarnajith T. H. M. P.**: Real-time eye exercises component.
+- **IT21341540 - Senanayaka W. S. H. M.**: Eye fatigue and color blindness detection.
+- **IT21340796 - Hettiarachchi H. W. R. A.**: Real-time pupil tracking mechanism.
 
 ---
 
@@ -42,22 +52,12 @@ The **OptiTech** system integrates Artificial Intelligence, Machine Learning, an
 
 ---
 
-## System Components
-### 1. Cataract Detection
-- **AI Models**: Trained on diverse ophthalmic datasets.
-- **Features**: Multi-stage classification and accuracy optimization.
+## System Architecture
+Below is the system architecture of the **OptiTech** platform:
 
-### 2. Eye Exercises
-- **Personalization**: Real-time feedback and adaptive programs.
-- **Tracking**: Webcam-based gaze monitoring.
+![System Architecture](https://github.com/user-attachments/assets/af57a38b-202d-4bff-a9b1-3637187b7762)
 
-### 3. Fatigue and Color Blindness Detection
-- **Parameters**: Blink rate, response times, and visual test results.
-- **Integration**: Combined fatigue and color vision assessment.
-
-### 4. Pupil Tracking
-- **Techniques**: Real-time video processing and adaptive algorithms.
-- **Output**: Dynamic pupil visualization and insights.
+This architecture illustrates the flow of data and interactions between the system's components, including AI models, user interfaces, and cloud services.
 
 ---
 
