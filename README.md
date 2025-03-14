@@ -6,9 +6,4 @@
 
 
 
-
-
-
-
-
 OptiTech 
