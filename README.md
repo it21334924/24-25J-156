@@ -2,8 +2,4 @@
 
 
 
-
-
-
-
 OptiTech 
