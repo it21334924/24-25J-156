@@ -59,8 +59,7 @@ Our dedicated team of innovators includes:
 ## System Architecture
 Below is the system architecture of the **OptiTech** platform:
 
-![System Architecture](![Image](https://github.com/user-attachments/assets/ec93ef86-0c65-4a08-81c0-91d588fef6af))
-
+![Image](https://github.com/user-attachments/assets/ec93ef86-0c65-4a08-81c0-91d588fef6af)
 This architecture illustrates the flow of data and interactions between the system's components, including AI models, user interfaces, and cloud services.
 
 ---
