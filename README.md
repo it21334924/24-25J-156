@@ -1,6 +1,6 @@
 # 24-25J-156
 
-OptiTech Eye 
+OptiTech Eye    
 =======
 # Advancements in Eye Health Monitoring and Care
 
@@ -92,13 +92,6 @@ The final system achieved:
    ```bash
    git clone https://github.com/OptiTech/eye-health-monitoring.git
    cd eye-health-monitoring
-
-
-
-
-
-
-
 
 
 
