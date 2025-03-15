@@ -93,5 +93,3 @@ The final system achieved:
    git clone https://github.com/OptiTech/eye-health-monitoring.git
    cd eye-health-monitoring
 
-
-
