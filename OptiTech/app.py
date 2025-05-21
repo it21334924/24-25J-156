@@ -56,8 +56,7 @@ def analyze_frame():
             left_ear, right_ear = calculate_ear(landmarks, LEFT_EYE_INDICES, RIGHT_EYE_INDICES)
             avg_ear = (left_ear + right_ear) / 2
             
-            # Use the pre-trained model for additional analysis if needed
-            # Here we're just using the EAR value for simplicity
+           
             
             return jsonify({
                 'avg_ear': float(avg_ear),
