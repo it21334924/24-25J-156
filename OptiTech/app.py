@@ -10,7 +10,7 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for communication with frontend
 
 # Load pre-trained model
-model = tf.keras.models.load_model('eye_fatigue_model.h5')
+model = tf.keras.models.load_model('eye_fatigue_rnn_model.h5')
 
 # Mediapipe initialization
 mp_face_mesh = mp.solutions.face_mesh
