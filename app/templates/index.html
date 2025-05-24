@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eye Fatigue Detection</title>
+
+  <!-- ✅ Fixed CSS path -->
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="shortcut icon" href="/static/favicon.ico">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="/" class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+        OptiTech
+      </a>
+      <div class="nav">
+        <a href="/eye_fatigue" class="active">Eye Fatigue Test</a>
+        <a href="/color_test">Color Blindness Test</a>
+      </div>
+    </header>
+
+    <div class="main-content">
+      <h1>Monitor Your Eye Health</h1>
+      <p class="description">This application uses computer vision to detect signs of eye fatigue in real-time.</p>
+
+      <div class="video-container">
+        <video id="video-feed" autoplay></video>
+        <div class="fatigue-alert" id="fatigue-alert">FATIGUE DETECTED!</div>
+      </div>
+
+      <div class="stats-container">
+        <div class="stat-card">
+          <div class="stat-label">Eye Aspect Ratio (EAR)</div>
+          <div class="stat-value" id="ear-value">0.00</div>
+          <div class="stat-label">Lower values indicate closed eyes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Fatigue Duration</div>
+          <div class="stat-value" id="fatigue-duration">0s</div>
+          <div class="stat-label">Time with closed eyes</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="start-btn" id="start-btn">Start Detection</button>
+        <button class="stop-btn hidden" id="stop-btn">Stop Detection</button>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 24-25J-156 OptiTech</p>
+    </footer>
+  </div>
+
+  <!-- ✅ Fixed JS path -->
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
