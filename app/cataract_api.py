@@ -138,9 +138,9 @@ async def model_info():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error getting model info: {str(e)}")
 
-@cataract_router.get("/", response_class=HTMLResponse)
+@cataract_router.get("/cataract", response_class=HTMLResponse)
 async def get_index():
-    with open("app/static/index.html") as f:
+    with open("app/templates/cataract.html") as f:
         return HTMLResponse(content=f.read())
 
 @cataract_router.post("/debug/test-eye-detection")
