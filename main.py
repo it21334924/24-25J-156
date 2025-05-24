@@ -1,11 +1,12 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
 import os
-
 from app.fatigue_api import fatigue_router
 
-app = FastAPI(title="Eye Health Platform")
+app = FastAPI(title="Eye Health Platform", description="AI-powered eye fatigue detection system")
 
 # Enable CORS
 app.add_middleware(
@@ -18,14 +19,27 @@ app.add_middleware(
 
 # Paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_DIR = os.path.join(BASE_DIR, "app", "static")       # ✅ For CSS, JS, images
-TEMPLATES_DIR = os.path.join(BASE_DIR, "app", "templates") # ✅ For HTML files
+STATIC_DIR = os.path.join(BASE_DIR, "app", "static")
+TEMPLATES_DIR = os.path.join(BASE_DIR, "app", "templates")
 
-# Serve static assets at /static/
+# Mount static files
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
-# ✅ Include all HTML + API routes from fatigue_router
+# Templates
+templates = Jinja2Templates(directory=TEMPLATES_DIR)
+
+# Include the fatigue detection router
 app.include_router(fatigue_router)
+
+# Root endpoint
+@app.get("/", response_class=HTMLResponse)
+async def root(request: Request):
+    return templates.TemplateResponse("fatigue.html", {"request": request})
+
+# Health check endpoint
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "message": "OptiTech Platform is running"}
 
 # Server entry point
 if __name__ == "__main__":
