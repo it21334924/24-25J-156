@@ -16,9 +16,8 @@ app.add_middleware(
 )
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_DIR = os.path.join(BASE_DIR, "app", "static")
-app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
-
+TEMPLATES_DIR = os.path.join(BASE_DIR, "app", "templates")
+app.mount("/templates", StaticFiles(directory=TEMPLATES_DIR), name="templates")
 app.include_router(cataract_router)
 
 if __name__ == "__main__":
