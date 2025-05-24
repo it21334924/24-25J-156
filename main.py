@@ -17,12 +17,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ✅ Mount static directory (inside app/static)
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_DIR = os.path.join(BASE_DIR, "app", "static")
-app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
-# ✅ Register the router
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+TEMPLATES_DIR = os.path.join(BASE_DIR, "app", "templates")
+app.mount("/templates", StaticFiles(directory=TEMPLATES_DIR), name="templates")
+
+# ✅ Include the exercise router
 app.include_router(exercise_router)
 
 # ✅ Run server when executed directly

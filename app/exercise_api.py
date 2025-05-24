@@ -16,7 +16,7 @@ exercise_router = APIRouter()
 
 # Paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_DIR = os.path.join(BASE_DIR, "static")  # static folder inside /app/
+TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")  # templates folder inside /app/
 MODEL_DIR = os.path.join(BASE_DIR, "utils")
 
 # Load models
@@ -26,23 +26,23 @@ detector = dlib.get_frontal_face_detector()
 
 @exercise_router.get("/eye-test")
 def get_index():
-    return FileResponse(os.path.join(STATIC_DIR, "index.html"))
+    return FileResponse(os.path.join(TEMPLATES_DIR, "index.html"))
 
 @exercise_router.get("/face-test")
 def get_face_test():
-    return FileResponse(os.path.join(STATIC_DIR, "face_test.html"))
+    return FileResponse(os.path.join(TEMPLATES_DIR, "face_test.html"))
 
 @exercise_router.get("/basic-face-test")
 def get_basic_face_test():
-    return FileResponse(os.path.join(STATIC_DIR, "basic_face_test.html"))
+    return FileResponse(os.path.join(TEMPLATES_DIR, "basic_face_test.html"))
 
 @exercise_router.get("/exercise")
 def get_exercise():
-    return FileResponse(os.path.join(STATIC_DIR, "exercise.html"))
+    return FileResponse(os.path.join(TEMPLATES_DIR, "exercise.html"))
 
 @exercise_router.get("/exercise_full")
 def get_exercise_full():
-    return FileResponse(os.path.join(STATIC_DIR, "exercise_full.html"))
+    return FileResponse(os.path.join(TEMPLATES_DIR, "exercise_full.html"))
 
 # # Load models once
 # model_path = "random_forest_model.pkl"
