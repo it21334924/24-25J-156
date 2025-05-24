@@ -4,6 +4,7 @@ from fastapi.staticfiles import StaticFiles
 import os
 
 from app.exercise_api import exercise_router  
+from app.cataract_api import cataract_router
 # from app.exercise_api_test import exercise_router
 
 app = FastAPI(title="Eye Health Platform")
@@ -24,6 +25,8 @@ app.mount("/templates", StaticFiles(directory=TEMPLATES_DIR), name="templates")
 
 # ✅ Include the exercise router
 app.include_router(exercise_router)
+app.include_router(cataract_router)
+
 
 # ✅ Run server when executed directly
 if __name__ == "__main__":
