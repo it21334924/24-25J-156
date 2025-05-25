@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eye Fatigue Detection - OptiTech</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="shortcut icon" href="/static/favicon.ico">
+    <meta name="description" content="AI-powered real-time eye fatigue detection using computer vision">
+    <meta name="keywords" content="eye fatigue, computer vision, health monitoring, AI">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/" class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                OptiTech
+            </a>
+            <div class="nav">
+                <a href="/eye_fatigue" class="active">Eye Fatigue Test</a>
+                <a href="/color_test">Color Blindness Test</a>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <h1>AI-Powered Eye Fatigue Detection</h1>
+            <p class="description">
+                This application uses computer vision to detect signs of eye fatigue in real-time
+            </p>
+
+            <div class="video-container">
+                <video id="video-feed" autoplay muted playsinline></video>
+                <div class="fatigue-alert" id="fatigue-alert">
+                    ⚠️ FATIGUE DETECTED! Take a break!
+                </div>
+                <div class="video-overlay">
+                    <div class="status-indicator" id="status-indicator">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Ready</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon">👁️</div>
+                    <div class="stat-label">Eye Aspect Ratio (EAR)</div>
+                    <div class="stat-value" id="ear-value">0.000</div>
+                    <div class="stat-description">
+                        Normal: >0.25 | Fatigue: 0.20-0.25 | Critical: <0.20
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">⏱️</div>
+                    <div class="stat-label">Fatigue Duration</div>
+                    <div class="stat-value" id="fatigue-duration">0s</div>
+                    <div class="stat-description">
+                        Time with closed/tired eyes
+                    </div>
+                </div>
+                
+                
+            </div>
+
+            <div class="controls">
+                <button class="start-btn" id="start-btn">
+                    <span class="btn-icon">▶️</span>
+                    Start Detection
+                </button>
+                <button class="stop-btn hidden" id="stop-btn">
+                    <span class="btn-icon">⏹️</span>
+                    Stop Detection
+                </button>
+                
+            </div>
+
+           
+
+            <!-- Error/Success Messages -->
+            <div class="message-container">
+                <div class="alert alert-success hidden" id="success-alert">
+                    <span class="alert-icon">✅</span>
+                    <span class="alert-message" id="success-message"></span>
+                </div>
+                <div class="alert alert-error hidden" id="error-alert">
+                    <span class="alert-icon">❌</span>
+                    <span class="alert-message" id="error-message"></span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2024-25 OptiTech - AI-Powered Eye Health Platform</p>
+                
+            </div>
+        </footer>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+    <script>
+       
+
+        // Add performance monitoring
+        let performanceMetrics = {
+            startTime: null,
+            frameCount: 0,
+            lastFPSUpdate: null,
+            fps: 0
+        };
+
+        function updatePerformanceMetrics() {
+            const now = Date.now();
+            performanceMetrics.frameCount++;
+            
+            if (!performanceMetrics.lastFPSUpdate) {
+                performanceMetrics.lastFPSUpdate = now;
+                return;
+            }
+            
+            const timeDiff = now - performanceMetrics.lastFPSUpdate;
+            if (timeDiff >= 1000) { // Update every second
+                performanceMetrics.fps = Math.round(performanceMetrics.frameCount / (timeDiff / 1000));
+                performanceMetrics.frameCount = 0;
+                performanceMetrics.lastFPSUpdate = now;
+                
+                // Update status indicator
+                const statusText = document.querySelector('.status-text');
+                if (statusText && performanceMetrics.fps > 0) {
+                    statusText.textContent = `Active (${performanceMetrics.fps} FPS)`;
+                }
+            }
+        }
+
+        // Camera permission check
+        async function checkCameraPermission() {
+            try {
+                const permissions = await navigator.permissions.query({ name: 'camera' });
+                const statusIndicator = document.getElementById('status-indicator');
+                
+                switch (permissions.state) {
+                    case 'granted':
+                        statusIndicator.classList.add('status-ready');
+                        break;
+                    case 'denied':
+                        statusIndicator.classList.add('status-error');
+                        document.querySelector('.status-text').textContent = 'Camera Denied';
+                        break;
+                    case 'prompt':
+                        statusIndicator.classList.add('status-warning');
+                        document.querySelector('.status-text').textContent = 'Camera Permission Required';
+                        break;
+                }
+            } catch (error) {
+                console.log('Permission API not supported');
+            }
+        }
+
+        // Initialize camera permission check
+        checkCameraPermission();
+    </script>
+</body>
+</html>
