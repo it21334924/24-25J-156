@@ -4,6 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 import os
+
 from app.fatigue_api import fatigue_router
 
 app = FastAPI(title="Eye Health Platform", description="AI-powered eye fatigue detection system")
@@ -39,7 +40,7 @@ async def root(request: Request):
 # Health check endpoint
 @app.get("/health")
 async def health_check():
-    return {"status": "healthy", "message": "OptiTech Platform is running"}
+    return {"status": "healthy", "message": "Eye Health Platform is running"}
 
 # Server entry point
 if __name__ == "__main__":
