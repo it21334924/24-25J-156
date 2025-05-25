@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eye Exercise Program - Home</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: var(--primary-color);
+            padding: 15px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none; /* Hidden on desktop */
+            font-size: 1.8rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary-color), var(--success-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+            margin-top: 60px; /* Offset for fixed navbar */
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--primary-color);
+            background-color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .hero-btn:hover {
+            background-color: var(--light-color);
+            transform: translateY(-2px);
+        }
+
+        .hero-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #888;
+            background-color: var(--light-color);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block; /* Show hamburger on mobile */
+            }
+
+            .nav-menu {
+                display: none; /* Hidden by default on mobile */
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                padding: 10px 0;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-menu.active {
+                display: flex; /* Show when active */
+            }
+
+            .nav-menu a {
+                padding: 15px 20px;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a class="nav-logo">Optitech Eye</a>
+            <button class="hamburger">☰</button>
+            <div class="nav-menu">
+                <a href="/exercise_full">Eye-Exercise</a>
+                <a href="/cataract">Cataract</a>
+                <a href="/benefits">Glaucoma-Test</a>
+                <a href="/eye_fatigue">Eye Fatigue </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Your Eye Health Journey</h1>
+            <p>
+                Strengthen your eyes, improve focus, and reduce strain with our interactive eye exercise program. 
+                Start today and experience the difference!
+            </p>
+            <a href="exercise.html" class="hero-btn">Get Started Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        © 2025 Optitech Eye Program | Powered by Alphacode
+    </footer>
+
+    <script>
+        // Toggle hamburger menu on mobile
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close menu when a link is clicked
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.textContent = '☰';
+            });
+        });
+    </script>
+</body>
+</html>
