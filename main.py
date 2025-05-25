@@ -43,10 +43,6 @@ app.include_router(cataract_router)
 async def root(request: Request):
     return templates.TemplateResponse("home.html", {"request": request})
 
-# ✅ Health check endpoint
-@app.get("/health")
-async def health_check():
-    return {"status": "healthy", "message": "Eye Health Platform is running"}
 
 # ✅ Start the server
 if __name__ == "__main__":
