@@ -5,44 +5,50 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 import os
 
+# Routers
 from app.fatigue_api import fatigue_router
+from app.exercise_api import exercise_router
+from app.cataract_api import cataract_router
 
-app = FastAPI(title="Eye Health Platform", description="AI-powered eye fatigue detection system")
+app = FastAPI(
+    title="Eye Health Platform",
+    description="AI-powered eye care solutions: fatigue detection, exercises, and cataract detection"
+)
 
-# Enable CORS
+# ✅ Enable CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Adjust this for production
+    allow_origins=["*"],  # Adjust for production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Paths
+# ✅ Paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_DIR = os.path.join(BASE_DIR, "app", "static")
 TEMPLATES_DIR = os.path.join(BASE_DIR, "app", "templates")
 
-# Mount static files
+# ✅ Mount static files and templates
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
-
-# Templates
 templates = Jinja2Templates(directory=TEMPLATES_DIR)
 
-# Include the fatigue detection router
+# ✅ Include routers
 app.include_router(fatigue_router)
+app.include_router(exercise_router)
+app.include_router(cataract_router)
 
-# Root endpoint
+# ✅ Root endpoint (default homepage)
 @app.get("/", response_class=HTMLResponse)
 async def root(request: Request):
-    return templates.TemplateResponse("fatigue.html", {"request": request})
+    return templates.TemplateResponse("home.html", {"request": request})
 
-# Health check endpoint
+# ✅ Health check endpoint
 @app.get("/health")
 async def health_check():
     return {"status": "healthy", "message": "Eye Health Platform is running"}
 
-# Server entry point
+# ✅ Start the server
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
