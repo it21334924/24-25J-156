@@ -4,106 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eye Fatigue Detection - OptiTech</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="../static/css/eye_fatigue.css">
     <link rel="shortcut icon" href="/static/favicon.ico">
     <meta name="description" content="AI-powered real-time eye fatigue detection using computer vision">
     <meta name="keywords" content="eye fatigue, computer vision, health monitoring, AI">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <a href="/" class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-                    <circle cx="12" cy="12" r="3"></circle>
-                </svg>
-                OptiTech
-            </a>
-            <div class="nav">
-                <a href="/eye_fatigue" class="active">Eye Fatigue Test</a>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a class="nav-logo">Optitech Eye</a>
+            <button class="hamburger">☰</button>
+            <div class="nav-menu">
+                <a href="/exercise_full">Eye-Exercise</a>
+                <a href="/cataract">Cataract</a>
+                <a href="/glaucomaPage">Glaucoma-Test</a>
+                <a href="/eye_fatigue" class="active">Eye Fatigue</a>
                 <a href="/color_test">Color Blindness Test</a>
             </div>
-        </header>
+        </div>
+    </nav>
 
-        <div class="main-content">
+    <!-- Header Section -->
+    <header class="fatigue-header">
+        <div class="fatigue-header-content">
             <h1>AI-Powered Eye Fatigue Detection</h1>
-            <p class="description">
+            <p>Monitor eye fatigue in real-time using advanced computer vision technology.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="fatigue-main-container">
+        <div class="fatigue-content">
+            <p class="fatigue-description">
                 This application uses computer vision to detect signs of eye fatigue in real-time
             </p>
 
-            <div class="video-container">
+            <div class="fatigue-video-container">
                 <video id="video-feed" autoplay muted playsinline></video>
                 <div class="fatigue-alert" id="fatigue-alert">
                     ⚠️ FATIGUE DETECTED! Take a break!
                 </div>
-                <div class="video-overlay">
-                    <div class="status-indicator" id="status-indicator">
-                        <span class="status-dot"></span>
-                        <span class="status-text">Ready</span>
+                <div class="fatigue-video-overlay">
+                    <div class="fatigue-status-indicator" id="status-indicator">
+                        <span class="fatigue-status-dot"></span>
+                        <span class="fatigue-status-text">Ready</span>
                     </div>
                 </div>
             </div>
 
-            <div class="stats-container">
-                <div class="stat-card">
-                    <div class="stat-icon">👁️</div>
-                    <div class="stat-label">Eye Aspect Ratio (EAR)</div>
-                    <div class="stat-value" id="ear-value">0.000</div>
-                    <div class="stat-description">
+            <div class="fatigue-stats-container">
+                <div class="fatigue-stat-card">
+                    <div class="fatigue-stat-icon">👁️</div>
+                    <div class="fatigue-stat-label">Eye Aspect Ratio (EAR)</div>
+                    <div class="fatigue-stat-value" id="ear-value">0.000</div>
+                    <div class="fatigue-stat-description">
                         Normal: >0.25 | Fatigue: 0.20-0.25 | Critical: <0.20
                     </div>
                 </div>
                 
-                <div class="stat-card">
-                    <div class="stat-icon">⏱️</div>
-                    <div class="stat-label">Fatigue Duration</div>
-                    <div class="stat-value" id="fatigue-duration">0s</div>
-                    <div class="stat-description">
+                <div class="fatigue-stat-card">
+                    <div class="fatigue-stat-icon">⏱️</div>
+                    <div class="fatigue-stat-label">Fatigue Duration</div>
+                    <div class="fatigue-stat-value" id="fatigue-duration">0s</div>
+                    <div class="fatigue-stat-description">
                         Time with closed/tired eyes
                     </div>
                 </div>
-                
-                
             </div>
 
-            <div class="controls">
-                <button class="start-btn" id="start-btn">
-                    <span class="btn-icon">▶️</span>
+            <div class="fatigue-controls">
+                <button class="fatigue-start-btn" id="start-btn">
+                    <span class="fatigue-btn-icon">▶️</span>
                     Start Detection
                 </button>
-                <button class="stop-btn hidden" id="stop-btn">
-                    <span class="btn-icon">⏹️</span>
+                <button class="fatigue-stop-btn fatigue-hidden" id="stop-btn">
+                    <span class="fatigue-btn-icon">⏹️</span>
                     Stop Detection
                 </button>
-                
             </div>
 
-           
-
             <!-- Error/Success Messages -->
-            <div class="message-container">
-                <div class="alert alert-success hidden" id="success-alert">
-                    <span class="alert-icon">✅</span>
-                    <span class="alert-message" id="success-message"></span>
+            <div class="fatigue-message-container">
+                <div class="fatigue-alert fatigue-alert-success fatigue-hidden" id="success-alert">
+                    <span class="fatigue-alert-icon">✅</span>
+                    <span class="fatigue-alert-message" id="success-message"></span>
                 </div>
-                <div class="alert alert-error hidden" id="error-alert">
-                    <span class="alert-icon">❌</span>
-                    <span class="alert-message" id="error-message"></span>
+                <div class="fatigue-alert fatigue-alert-error fatigue-hidden" id="error-alert">
+                    <span class="fatigue-alert-icon">❌</span>
+                    <span class="fatigue-alert-message" id="error-message"></span>
                 </div>
             </div>
         </div>
-
-        <footer>
-            <div class="footer-content">
-                <p>&copy; 2024-25 OptiTech - AI-Powered Eye Health Platform</p>
-                
-            </div>
-        </footer>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        © 2025 Optitech Eye Program | Powered by Alphacode
+    </footer>
 
     <script src="/static/js/app.js"></script>
     <script>
-       
+        // Toggle hamburger menu on mobile
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.textContent = '☰';
+            });
+        });
 
         // Add performance monitoring
         let performanceMetrics = {
@@ -123,13 +139,12 @@
             }
             
             const timeDiff = now - performanceMetrics.lastFPSUpdate;
-            if (timeDiff >= 1000) { // Update every second
+            if (timeDiff >= 1000) {
                 performanceMetrics.fps = Math.round(performanceMetrics.frameCount / (timeDiff / 1000));
                 performanceMetrics.frameCount = 0;
                 performanceMetrics.lastFPSUpdate = now;
                 
-                // Update status indicator
-                const statusText = document.querySelector('.status-text');
+                const statusText = document.querySelector('.fatigue-status-text');
                 if (statusText && performanceMetrics.fps > 0) {
                     statusText.textContent = `Active (${performanceMetrics.fps} FPS)`;
                 }
@@ -144,15 +159,15 @@
                 
                 switch (permissions.state) {
                     case 'granted':
-                        statusIndicator.classList.add('status-ready');
+                        statusIndicator.classList.add('fatigue-status-ready');
                         break;
                     case 'denied':
-                        statusIndicator.classList.add('status-error');
-                        document.querySelector('.status-text').textContent = 'Camera Denied';
+                        statusIndicator.classList.add('fatigue-status-error');
+                        document.querySelector('.fatigue-status-text').textContent = 'Camera Denied';
                         break;
                     case 'prompt':
-                        statusIndicator.classList.add('status-warning');
-                        document.querySelector('.status-text').textContent = 'Camera Permission Required';
+                        statusIndicator.classList.add('fatigue-status-warning');
+                        document.querySelector('.fatigue-status-text').textContent = 'Camera Permission Required';
                         break;
                 }
             } catch (error) {

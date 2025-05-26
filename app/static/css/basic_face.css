@@ -76,7 +76,7 @@ nav {
 }
 
 /* Header Styles */
-.color-test-header {
+.face-header {
     height: 50vh;
     background: linear-gradient(135deg, var(--primary-color), var(--success-color));
     display: flex;
@@ -88,23 +88,23 @@ nav {
     margin-top: 60px; /* Offset for fixed navbar */
 }
 
-.color-test-header-content {
+.face-header-content {
     max-width: 800px;
 }
 
-.color-test-header h1 {
+.face-header h1 {
     font-size: 3rem;
     margin-bottom: 20px;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.color-test-header p {
+.face-header p {
     font-size: 1.4rem;
     color: rgba(255, 255, 255, 0.9);
 }
 
 /* Main Content Styles */
-.color-test-main-container {
+.face-container {
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
@@ -113,143 +113,140 @@ nav {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.color-test-container {
-    padding: 20px;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+#face-status {
     text-align: center;
-}
-
-.color-test-progress-container {
-    width: 100%;
-    height: 10px;
-    background-color: #e0e0e0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 10px;
     border-radius: 5px;
-    overflow: hidden;
-    margin-bottom: 10px;
-}
-
-.color-test-progress-bar {
-    height: 100%;
-    background-color: var(--success-color);
-    width: 0;
-    transition: width 0.3s ease;
-}
-
-.color-test-step-indicator {
-    font-size: 1.1rem;
-    color: var(--dark-color);
     margin-bottom: 20px;
 }
 
-.color-test-instruction {
-    font-size: 1.5rem;
-    color: var(--primary-color);
+.face-connected {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.face-disconnected {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.face-video-container {
+    display: flex;
+    justify-content: center;
     margin: 20px 0;
 }
 
-.color-test-instruction #target-color {
-    font-weight: 600;
-    color: var(--success-color);
-}
-
-.color-test-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 10px;
-    max-width: 600px;
-    margin: 0 auto 20px;
-}
-
-.color-test-grid > div {
-    width: 100px;
-    height: 100px;
+#video {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid var(--primary-color);
     border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.color-test-grid > div:hover {
-    transform: scale(1.05);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.color-test-controls {
+.face-controls {
     display: flex;
     justify-content: center;
     gap: 20px;
+    margin: 20px 0;
 }
 
-.color-test-primary-btn {
+.face-controls button {
     padding: 12px 30px;
     font-size: 1.1rem;
     font-weight: 600;
     border: none;
     border-radius: 5px;
-    background-color: var(--primary-color);
-    color: white;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.color-test-primary-btn:hover:not(:disabled) {
+#startBtn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#startBtn:hover:not(:disabled) {
     background-color: #2980b9; /* Darker shade of primary color */
     transform: translateY(-2px);
 }
 
-.color-test-primary-btn:disabled {
+#stopBtn {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+#stopBtn:hover:not(:disabled) {
+    background-color: #c0392b; /* Darker shade of danger color */
+    transform: translateY(-2px);
+}
+
+button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
 
-.hidden {
-    display: none;
-}
-
-.color-test-results-container {
-    margin-top: 20px;
-    padding: 20px;
+.face-stats {
+    margin: 20px 0;
+    padding: 15px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
 }
 
-.color-test-results-container h2 {
+.face-stats h3 {
     font-size: 1.5rem;
-    color: var(--primary-color);
     margin-bottom: 15px;
+    color: var(--primary-color);
 }
 
-.color-test-result-message {
-    font-size: 1.3rem;
+.face-stats-item {
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+.face-stats-value {
     font-weight: 600;
     color: var(--success-color);
-    margin-bottom: 10px;
 }
 
-.color-test-result-details {
-    font-size: 1.1rem;
-    color: var(--dark-color);
-    margin-bottom: 20px;
-}
-
-.color-test-info {
+.face-instructions {
     margin: 20px 0;
     padding: 15px;
-    background-color: var(--light-color);
+    background-color: white;
     border-radius: 5px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
-.color-test-info h3 {
-    font-size: 1.3rem;
+.face-instructions h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
     color: var(--primary-color);
-    margin-bottom: 10px;
 }
 
-.color-test-info p {
-    font-size: 1rem;
+.face-instructions ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.face-instructions li {
+    margin: 8px 0;
+    font-size: 1.1rem;
+}
+
+.face-log-container {
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+.face-log-container div {
     margin: 5px 0;
 }
 
@@ -289,60 +286,32 @@ footer {
         text-align: center;
     }
 
-    .color-test-header {
+    .face-header {
         height: 40vh;
     }
 
-    .color-test-header h1 {
+    .face-header h1 {
         font-size: 2rem;
     }
 
-    .color-test-header p {
+    .face-header p {
         font-size: 1.1rem;
     }
 
-    .color-test-main-container {
+    .face-container {
         padding: 15px;
     }
 
-    .color-test-container {
-        padding: 15px;
-    }
-
-    .color-test-instruction {
-        font-size: 1.3rem;
-    }
-
-    .color-test-grid > div {
-        width: 80px;
-        height: 80px;
-    }
-
-    .color-test-primary-btn {
+    .face-controls button {
         padding: 10px 20px;
         font-size: 1rem;
     }
 
-    .color-test-results-container h2 {
+    .face-stats h3, .face-instructions h3 {
         font-size: 1.3rem;
     }
 
-    .color-test-result-message {
-        font-size: 1.1rem;
-    }
-
-    .color-test-result-details {
+    .face-stats-item, .face-instructions li {
         font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .color-test-grid {
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    }
-
-    .color-test-grid > div {
-        width: 60px;
-        height: 60px;
     }
 }

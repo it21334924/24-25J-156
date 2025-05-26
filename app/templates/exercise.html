@@ -4,462 +4,162 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eye Exercise Program</title>
-    <style>
-        :root {
-            --primary-color: #3498db;
-            --success-color: #2ecc71;
-            --warning-color: #f39c12;
-            --danger-color: #e74c3c;
-            --light-color: #f8f9fa;
-            --dark-color: #343a40;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-            color: var(--dark-color);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 30px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        h1, h2, h3 {
-            margin-top: 0;
-        }
-        
-        .card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-            margin: -10px;
-        }
-        
-        .col {
-            flex: 1;
-            padding: 10px;
-            min-width: 300px;
-        }
-        
-        .exercise-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .exercise-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-        }
-        
-        .exercise-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .exercise-card.selected {
-            border: 2px solid var(--primary-color);
-        }
-        
-        .exercise-header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px;
-        }
-        
-        .exercise-body {
-            padding: 15px;
-        }
-        
-        .exercise-footer {
-            padding: 10px 15px;
-            background-color: #f8f9fa;
-            border-top: 1px solid #eee;
-            font-size: 14px;
-            color: #666;
-        }
-        
-        .video-container {
-            width: 100%;
-            position: relative;
-            background-color: #000;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-        
-        #video {
-            width: 100%;
-            display: block;
-            border-radius: 5px;
-        }
-        
-        .controls {
-            margin: 20px 0;
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-        
-        button {
-            padding: 12px 24px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            font-weight: 600;
-        }
-        
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background-color: #2980b9;
-        }
-        
-        .btn-success {
-            background-color: var(--success-color);
-            color: white;
-        }
-        
-        .btn-success:hover {
-            background-color: #27ae60;
-        }
-        
-        .btn-danger {
-            background-color: var(--danger-color);
-            color: white;
-        }
-        
-        .btn-danger:hover {
-            background-color: #c0392b;
-        }
-        
-        button:disabled {
-            background-color: #95a5a6;
-            cursor: not-allowed;
-        }
-        
-        .exercise-container {
-            display: none;
-        }
-        
-        .active {
-            display: block;
-        }
-        
-        .progress-container {
-            width: 100%;
-            height: 20px;
-            background-color: #e0e0e0;
-            border-radius: 10px;
-            margin: 20px 0;
-            overflow: hidden;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            background-color: var(--primary-color);
-            border-radius: 10px;
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-        
-        .status {
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            font-weight: bold;
-            text-align: center;
-        }
-        
-        .status-success {
-            background-color: #d4edda;
-            color: #155724;
-        }
-        
-        .status-warning {
-            background-color: #fff3cd;
-            color: #856404;
-        }
-        
-        .status-danger {
-            background-color: #f8d7da;
-            color: #721c24;
-        }
-        
-        .status-info {
-            background-color: #d1ecf1;
-            color: #0c5460;
-        }
-        
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, 1fr);
-            gap: 5px;
-            width: 200px;
-            height: 200px;
-            margin: 20px auto;
-            border: 1px solid #ddd;
-            background-color: #f8f9fa;
-        }
-        
-        .grid-item {
-            border: 1px solid #ddd;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 12px;
-        }
-        
-        .grid-target {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        .grid-current {
-            position: relative;
-        }
-        
-        .grid-current::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: var(--danger-color);
-            border-radius: 50%;
-        }
-        
-        .grid-match {
-            background-color: var(--success-color);
-            color: white;
-        }
-        
-        .stats-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        
-        .stat-card {
-            flex: 1;
-            min-width: 120px;
-            background-color: white;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 10px 0;
-            color: var(--primary-color);
-        }
-        
-        .stat-label {
-            font-size: 14px;
-            color: #666;
-        }
-        
-        .instructions {
-            background-color: #fff3cd;
-            color: #856404;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
-        }
-        
-        .completion-message {
-            text-align: center;
-            padding: 30px;
-            background-color: #d4edda;
-            color: #155724;
-            border-radius: 5px;
-            margin: 20px 0;
-            display: none;
-        }
-        
-        .score-display {
-            font-size: 72px;
-            font-weight: bold;
-            margin: 20px 0;
-            color: var(--success-color);
-        }
-        
-        @media (max-width: 768px) {
-            .col {
-                flex-basis: 100%;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../static/css/exercise.css">
 </head>
 <body>
-    <div class="container">
-        <header>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a class="nav-logo">Optitech Eye</a>
+            <button class="hamburger">☰</button>
+            <div class="nav-menu">
+                <a href="/exercise_full" class="active">Eye-Exercise</a>
+                <a href="/cataract">Cataract</a>
+                <a href="/glaucomaPage">Glaucoma-Test</a>
+                <a href="/eye_fatigue">Eye Fatigue</a>
+                <a href="/color_test">Color Blindness Test</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="eye-exercise-header">
+        <div class="eye-exercise-header-content">
             <h1>Eye Exercise Program</h1>
-            <p>Strengthen your eye muscles and improve focus with guided exercises</p>
-        </header>
-        
-        <div id="exercise-selection" class="card">
+            <p>Strengthen your eye muscles and improve focus with our guided exercises.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="eye-exercise-main-container">
+        <!-- Exercise Selection Screen -->
+        <div id="exercise-selection" class="eye-exercise-card">
             <h2>Select an Exercise</h2>
-            <div class="exercise-grid">
-                <div class="exercise-card" data-exercise="circular_motion">
-                    <div class="exercise-header">
+            <div class="eye-exercise-grid">
+                <div class="eye-exercise-item" data-exercise="circular_motion">
+                    <div class="eye-exercise-item-header">
                         <h3>Circular Motion</h3>
                     </div>
-                    <div class="exercise-body">
+                    <div class="eye-exercise-item-body">
                         <p>Follow the target in a circular pattern to strengthen eye muscles</p>
                     </div>
-                    <div class="exercise-footer">
+                    <div class="eye-exercise-item-footer">
                         Duration: 30 seconds
                     </div>
                 </div>
                 
-                <div class="exercise-card" data-exercise="focus_shifting">
-                    <div class="exercise-header">
+                <div class="eye-exercise-item" data-exercise="focus_shifting">
+                    <div class="eye-exercise-item-header">
                         <h3>Focus Shifting</h3>
                     </div>
-                    <div class="exercise-body">
+                    <div class="eye-exercise-item-body">
                         <p>Shift focus between near and far points to improve eye flexibility</p>
                     </div>
-                    <div class="exercise-footer">
+                    <div class="eye-exercise-item-footer">
                         Duration: 30 seconds
                     </div>
                 </div>
                 
-                <div class="exercise-card" data-exercise="diagonal_movement">
-                    <div class="exercise-header">
+                <div class="eye-exercise-item" data-exercise="diagonal_movement">
+                    <div class="eye-exercise-item-header">
                         <h3>Diagonal Movement</h3>
                     </div>
-                    <div class="exercise-body">
+                    <div class="eye-exercise-item-body">
                         <p>Move eyes diagonally to exercise all eye muscles</p>
                     </div>
-                    <div class="exercise-footer">
+                    <div class="eye-exercise-item-footer">
                         Duration: 30 seconds
                     </div>
                 </div>
                 
-                <div class="exercise-card" data-exercise="figure_eight">
-                    <div class="exercise-header">
+                <div class="eye-exercise-item" data-exercise="figure_eight">
+                    <div class="eye-exercise-item-header">
                         <h3>Figure Eight</h3>
                     </div>
-                    <div class="exercise-body">
+                    <div class="eye-exercise-item-body">
                         <p>Trace a figure eight pattern to improve eye coordination</p>
                     </div>
-                    <div class="exercise-footer">
+                    <div class="eye-exercise-item-footer">
                         Duration: 30 seconds
                     </div>
                 </div>
 
-                <div class="exercise-card" data-exercise="Up_and_Down_Eye_Movement">
-                    <div class="exercise-header">
+                <div class="eye-exercise-item" data-exercise="Up_and_Down_Eye_Movement">
+                    <div class="eye-exercise-item-header">
                         <h3>Up and Down Eye Movement</h3>
                     </div>
-                    <div class="exercise-body">
+                    <div class="eye-exercise-item-body">
                         <p>Move eyes Up and Down to exercise all eye muscles</p>
                     </div>
-                    <div class="exercise-footer">
+                    <div class="eye-exercise-item-footer">
                         Duration: 30 seconds
                     </div>
                 </div>
-
             </div>
             
-            <div class="controls">
-                <button id="startBtn" class="btn-primary" disabled>Start Exercise</button>
+            <div class="eye-exercise-controls">
+                <button id="startBtn" class="eye-exercise-btn-primary" disabled>Start Exercise</button>
             </div>
         </div>
         
-        <div id="exercise-container" class="exercise-container">
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <h2 id="exercise-title">Exercise Name</h2>
-                        <div id="status" class="status status-info">Preparing exercise...</div>
+        <!-- Exercise Content (Hidden initially) -->
+        <div id="exercise-container" class="eye-exercise-content">
+            <div class="eye-exercise-row">
+                <div class="eye-exercise-col">
+                    <div class="eye-exercise-panel-card">
+                        <h2 id="exercise-title" class="eye-exercise-title">Exercise Name</h2>
+                        <div id="status" class="eye-exercise-status eye-exercise-status-info">Preparing exercise...</div>
                         
-                        <div class="video-container">
+                        <div class="eye-exercise-video-container">
                             <img id="video" alt="Exercise feed" />
                         </div>
                         
-                        <div class="progress-container">
-                            <div id="progress-bar" class="progress-bar"></div>
+                        <div class="eye-exercise-progress-container">
+                            <div id="progress-bar" class="eye-exercise-progress-bar"></div>
                         </div>
                         
-                        <div class="stats-container">
-                            <div class="stat-card">
-                                <div class="stat-value" id="time-remaining">30s</div>
-                                <div class="stat-label">Remaining</div>
+                        <div class="eye-exercise-stats-container">
+                            <div class="eye-exercise-stat-card">
+                                <div class="eye-exercise-stat-value" id="time-remaining">30s</div>
+                                <div class="eye-exercise-stat-label">Remaining</div>
                             </div>
-                            <div class="stat-card">
-                                <div class="stat-value" id="accuracy">0%</div>
-                                <div class="stat-label">Accuracy</div>
+                            <div class="eye-exercise-stat-card">
+                                <div class="eye-exercise-stat-value" id="accuracy">0%</div>
+                                <div class="eye-exercise-stat-label">Accuracy</div>
                             </div>
-                            <div class="stat-card">
-                                <div class="stat-value" id="repetition">0/0</div>
-                                <div class="stat-label">Repetition</div>
+                            <div class="eye-exercise-stat-card">
+                                <div class="eye-exercise-stat-value" id="repetition">0/0</div>
+                                <div class="eye-exercise-stat-label">Repetition</div>
                             </div>
                         </div>
                         
-                        <div class="controls">
-                            <button id="stopBtn" class="btn-danger">Stop Exercise</button>
+                        <div class="eye-exercise-controls">
+                            <button id="stopBtn" class="eye-exercise-btn-danger">Stop Exercise</button>
                         </div>
                     </div>
                 </div>
                 
-                <div class="col">
-                    <div class="card">
+                <div class="eye-exercise-col">
+                    <div class="eye-exercise-panel-card">
                         <h3>Exercise Guide</h3>
-                        <div id="instructions" class="instructions">
+                        <div id="instructions" class="eye-exercise-instructions">
                             Select an exercise to begin
                         </div>
                         
                         <h3>Gaze Target</h3>
-                        <div class="grid-container" id="gaze-grid">
-                            <div class="grid-item" id="TopLeft">Top Left</div>
-                            <div class="grid-item" id="TopCenter">Top Center</div>
-                            <div class="grid-item" id="TopRight">Top Right</div>
-                            <div class="grid-item" id="MiddleLeft">Middle Left</div>
-                            <div class="grid-item" id="Center">Center</div>
-                            <div class="grid-item" id="MiddleRight">Middle Right</div>
-                            <div class="grid-item" id="BottomLeft">Bottom Left</div>
-                            <div class="grid-item" id="BottomCenter">Bottom Center</div>
-                            <div class="grid-item" id="BottomRight">Bottom Right</div>
+                        <div class="eye-exercise-grid-container" id="gaze-grid">
+                            <div class="eye-exercise-grid-item" id="TopLeft">Top Left</div>
+                            <div class="eye-exercise-grid-item" id="TopCenter">Top Center</div>
+                            <div class="eye-exercise-grid-item" id="TopRight">Top Right</div>
+                            <div class="eye-exercise-grid-item" id="MiddleLeft">Middle Left</div>
+                            <div class="eye-exercise-grid-item" id="Center">Center</div>
+                            <div class="eye-exercise-grid-item" id="MiddleRight">Middle Right</div>
+                            <div class="eye-exercise-grid-item" id="BottomLeft">Bottom Left</div>
+                            <div class="eye-exercise-grid-item" id="BottomCenter">Bottom Center</div>
+                            <div class="eye-exercise-grid-item" id="BottomRight">Bottom Right</div>
                         </div>
                         
-                        <div id="feedback" class="status-info status" style="margin-top: 20px;">
+                        <div id="feedback" class="eye-exercise-status-info eye-exercise-status">
                             Follow the highlighted target with your eyes
                         </div>
                     </div>
@@ -467,19 +167,42 @@
             </div>
         </div>
         
-        <div id="completion-message" class="completion-message">
+        <!-- Completion Message (Hidden initially) -->
+        <div id="completion-message" class="eye-exercise-completion-message">
             <h2>Exercise Completed!</h2>
-            <div class="score-display" id="final-score">87</div>
+            <div class="eye-exercise-score-display" id="final-score">87</div>
             <p id="completion-feedback">Great job! You've successfully completed the exercise.</p>
-            <div class="controls">
-                <button id="returnBtn" class="btn-primary">Return to Exercises</button>
+            <div class="eye-exercise-controls">
+                <button id="returnBtn" class="eye-exercise-btn-primary">Return to Exercises</button>
             </div>
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        © 2025 Optitech Eye Program | Powered by Alphacode
+    </footer>
+
     <script>
+        // Toggle hamburger menu on mobile
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close menu when a link is clicked
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.textContent = '☰';
+            });
+        });
+
         // DOM Elements
-        const exerciseCards = document.querySelectorAll('.exercise-card');
+        const exerciseCards = document.querySelectorAll('.eye-exercise-item');
         const startBtn = document.getElementById('startBtn');
         const stopBtn = document.getElementById('stopBtn');
         const returnBtn = document.getElementById('returnBtn');
@@ -540,11 +263,11 @@
             
             // Show exercise container
             exerciseSelection.style.display = 'none';
-            exerciseContainer.style.display = 'block';
+            exerciseContainer.className = 'eye-exercise-content active';
             
             // Update status
             statusElement.textContent = 'Connecting...';
-            statusElement.className = 'status status-info';
+            statusElement.className = 'eye-exercise-status eye-exercise-status-info';
             
             // Initialize WebSocket connection
             initWebSocket();
@@ -573,17 +296,17 @@
                 
                 ws.onclose = function() {
                     statusElement.textContent = 'Connection closed';
-                    statusElement.className = 'status status-warning';
+                    statusElement.className = 'eye-exercise-status eye-exercise-status-warning';
                 };
                 
                 ws.onerror = function(error) {
                     statusElement.textContent = 'Connection error';
-                    statusElement.className = 'status status-danger';
+                    statusElement.className = 'eye-exercise-status eye-exercise-status-danger';
                     console.error('WebSocket error:', error);
                 };
             } catch (error) {
                 statusElement.textContent = `Error: ${error.message}`;
-                statusElement.className = 'status status-danger';
+                statusElement.className = 'eye-exercise-status eye-exercise-status-danger';
             }
         }
         
@@ -613,7 +336,7 @@
             
             // Update status
             statusElement.textContent = 'Starting exercise...';
-            statusElement.className = 'status status-success';
+            statusElement.className = 'eye-exercise-status eye-exercise-status-success';
             
             // Reset progress
             progressBar.style.width = '0%';
@@ -646,7 +369,7 @@
             
             // Update status
             statusElement.textContent = 'Exercise in progress';
-            statusElement.className = 'status status-success';
+            statusElement.className = 'eye-exercise-status eye-exercise-status-success';
         }
         
         // Handle exercise completion
@@ -658,7 +381,7 @@
             }
             
             // Hide exercise container
-            exerciseContainer.style.display = 'none';
+            exerciseContainer.className = 'eye-exercise-content';
             
             // Show completion message
             completionMessage.style.display = 'block';
@@ -681,7 +404,7 @@
         // Handle errors
         function handleError(data) {
             statusElement.textContent = `Error: ${data.message}`;
-            statusElement.className = 'status status-danger';
+            statusElement.className = 'eye-exercise-status eye-exercise-status-danger';
             
             // Log error
             console.error('Exercise error:', data.message);
@@ -707,7 +430,7 @@
             
             // Show selection, hide others
             exerciseSelection.style.display = 'block';
-            exerciseContainer.style.display = 'none';
+            exerciseContainer.className = 'eye-exercise-content';
             completionMessage.style.display = 'none';
             
             // Remove selected class from all cards
@@ -717,9 +440,9 @@
         // Reset grid display
         function resetGrid() {
             // Remove all special classes from grid items
-            const gridItems = gazeGrid.querySelectorAll('.grid-item');
+            const gridItems = gazeGrid.querySelectorAll('.eye-exercise-grid-item');
             gridItems.forEach(item => {
-                item.classList.remove('grid-target', 'grid-current', 'grid-match');
+                item.classList.remove('eye-exercise-grid-target', 'eye-exercise-grid-current', 'eye-exercise-grid-match');
             });
         }
         
@@ -731,17 +454,17 @@
             // Highlight target position
             const targetElement = document.getElementById(targetPosition);
             if (targetElement) {
-                targetElement.classList.add('grid-target');
+                targetElement.classList.add('eye-exercise-grid-target');
             }
             
             // Highlight gaze position
             const gazeElement = document.getElementById(gazePosition);
             if (gazeElement) {
-                gazeElement.classList.add('grid-current');
+                gazeElement.classList.add('eye-exercise-grid-current');
                 
                 // Add match class if gaze matches target
                 if (isMatching) {
-                    gazeElement.classList.add('grid-match');
+                    gazeElement.classList.add('eye-exercise-grid-match');
                 }
             }
         }
@@ -750,16 +473,16 @@
         function updateFeedback(isMatching, targetPosition, gazePosition) {
             if (gazePosition === 'No face detected') {
                 feedbackElement.textContent = 'Face not detected. Please position yourself in front of the camera.';
-                feedbackElement.className = 'status status-danger';
+                feedbackElement.className = 'eye-exercise-status eye-exercise-status-danger';
                 return;
             }
             
             if (isMatching) {
                 feedbackElement.textContent = 'Great! You are looking at the correct position.';
-                feedbackElement.className = 'status status-success';
+                feedbackElement.className = 'eye-exercise-status eye-exercise-status-success';
             } else {
                 feedbackElement.textContent = `Look at ${targetPosition} instead of ${gazePosition}.`;
-                feedbackElement.className = 'status status-warning';
+                feedbackElement.className = 'eye-exercise-status eye-exercise-status-warning';
             }
         }
         
@@ -771,6 +494,6 @@
         });
         
         init();
-        </script>
-    </body>
+    </script>
+</body>
 </html>

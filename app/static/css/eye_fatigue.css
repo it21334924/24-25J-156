@@ -76,7 +76,7 @@ nav {
 }
 
 /* Header Styles */
-.glaucoma-header {
+.fatigue-header {
     height: 50vh;
     background: linear-gradient(135deg, var(--primary-color), var(--success-color));
     display: flex;
@@ -88,23 +88,23 @@ nav {
     margin-top: 60px;
 }
 
-.glaucoma-header-content {
+.fatigue-header-content {
     max-width: 800px;
 }
 
-.glaucoma-header h1 {
+.fatigue-header h1 {
     font-size: 3rem;
     margin-bottom: 20px;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.glaucoma-header p {
+.fatigue-header p {
     font-size: 1.4rem;
     color: rgba(255, 255, 255, 0.9);
 }
 
 /* Main Content Styles */
-.glaucoma-main-container {
+.fatigue-main-container {
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
@@ -114,157 +114,197 @@ nav {
     min-height: calc(100vh - 200px);
 }
 
-.glaucoma-section {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.fatigue-content {
     padding: 20px;
-    margin-bottom: 20px;
 }
 
-.glaucoma-info-text {
+.fatigue-description {
+    font-size: 1.2rem;
     color: #666;
-    font-size: 1rem;
-    margin-bottom: 15px;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-.glaucoma-form-group {
-    margin-bottom: 15px;
-}
-
-.glaucoma-form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.glaucoma-form-group input[type="number"],
-.glaucoma-form-group select,
-.glaucoma-form-group textarea {
+.fatigue-video-container {
+    position: relative;
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
+    max-width: 640px;
+    margin: 0 auto 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+#video-feed {
+    width: 100%;
+    display: block;
+}
+
+.fatigue-alert {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--danger-color);
+    color: white;
+    padding: 10px 20px;
     border-radius: 5px;
-    font-size: 1rem;
+    font-weight: bold;
+    display: none;
+    z-index: 10;
 }
 
-.glaucoma-form-group textarea {
-    resize: vertical;
+.fatigue-video-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 5;
 }
 
-.glaucoma-checkbox-group {
+.fatigue-status-indicator {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 8px 12px;
+    border-radius: 5px;
+    color: white;
 }
 
-.glaucoma-checkbox-group label {
-    font-weight: normal;
+.fatigue-status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #95a5a6;
 }
 
-.glaucoma-method-selection {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
+.fatigue-status-ready .fatigue-status-dot {
+    background-color: var(--success-color);
 }
 
-.glaucoma-button-group {
+.fatigue-status-warning .fatigue-status-dot {
+    background-color: var(--warning-color);
+}
+
+.fatigue-status-error .fatigue-status-dot {
+    background-color: var(--danger-color);
+}
+
+.fatigue-stats-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 30px;
 }
 
-.glaucoma-btn {
+.fatigue-stat-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+}
+
+.fatigue-stat-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.fatigue-stat-label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--dark-color);
+}
+
+.fatigue-stat-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 10px 0;
+}
+
+.fatigue-stat-description {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.fatigue-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.fatigue-start-btn, .fatigue-stop-btn {
     padding: 12px 24px;
     font-size: 1rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-weight: 600;
 }
 
-.glaucoma-btn-submit {
+.fatigue-start-btn {
     background-color: var(--primary-color);
     color: white;
 }
 
-.glaucoma-btn-submit:hover:not(:disabled) {
+.fatigue-start-btn:hover {
     background-color: #2980b9;
     transform: translateY(-2px);
 }
 
-.glaucoma-btn-start {
-    background-color: var(--success-color);
-    color: white;
-}
-
-.glaucoma-btn-start:hover:not(:disabled) {
-    background-color: #27ae60;
-    transform: translateY(-2px);
-}
-
-.glaucoma-btn-analyze {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-.glaucoma-btn-analyze:hover:not(:disabled) {
-    background-color: #2980b9;
-    transform: translateY(-2px);
-}
-
-.glaucoma-btn-end {
+.fatigue-stop-btn {
     background-color: var(--danger-color);
     color: white;
 }
 
-.glaucoma-btn-end:hover:not(:disabled) {
+.fatigue-stop-btn:hover {
     background-color: #c0392b;
     transform: translateY(-2px);
 }
 
-.glaucoma-btn-reset {
-    background-color: #95a5a6;
-    color: white;
-}
-
-.glaucoma-btn-reset:hover:not(:disabled) {
-    background-color: #7f8c8d;
-    transform: translateY(-2px);
-}
-
-.glaucoma-btn-disabled {
-    background-color: #95a5a6;
-    cursor: not-allowed;
-}
-
-.glaucoma-file-input {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.glaucoma-video-feed {
-    width: 100%;
-    max-width: 640px;
-    border-radius: 8px;
-    margin: 0 auto;
-    display: block;
-}
-
-.glaucoma-hidden {
+.fatigue-hidden {
     display: none;
 }
 
-.glaucoma-section p {
-    margin: 10px 0;
+.fatigue-message-container {
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.glaucoma-section p strong {
-    color: var(--dark-color);
+.fatigue-alert {
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.fatigue-alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.fatigue-alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.fatigue-alert-icon {
+    font-size: 1.2rem;
+}
+
+.fatigue-alert-message {
+    font-size: 1rem;
 }
 
 /* Footer Styles */
@@ -303,33 +343,37 @@ footer {
         text-align: center;
     }
 
-    .glaucoma-header {
+    .fatigue-header {
         height: 40vh;
     }
 
-    .glaucoma-header h1 {
+    .fatigue-header h1 {
         font-size: 2rem;
     }
 
-    .glaucoma-header p {
+    .fatigue-header p {
         font-size: 1.1rem;
     }
 
-    .glaucoma-main-container {
+    .fatigue-main-container {
         padding: 15px;
     }
 
-    .glaucoma-button-group {
+    .fatigue-video-container {
+        max-width: 100%;
+    }
+
+    .fatigue-stat-card {
+        max-width: 100%;
+    }
+
+    .fatigue-controls {
         flex-direction: column;
         align-items: center;
     }
 
-    .glaucoma-btn {
+    .fatigue-start-btn, .fatigue-stop-btn {
         width: 100%;
         max-width: 300px;
-    }
-
-    .glaucoma-file-input {
-        width: 100%;
     }
 }

@@ -3,164 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Face Detection Test</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-        
-        .container {
-            max-width: 800px;
-            width: 100%;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .video-container {
-            width: 100%;
-            position: relative;
-            margin-bottom: 20px;
-        }
-        
-        #video {
-            width: 100%;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            display: block;
-        }
-        
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #2196F3;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        button:hover {
-            background-color: #1976D2;
-        }
-        
-        button:disabled {
-            background-color: #9E9E9E;
-            cursor: not-allowed;
-        }
-        
-        #status {
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 15px;
-            font-weight: bold;
-            text-align: center;
-        }
-        
-        .connected {
-            background-color: #C8E6C9;
-            color: #2E7D32;
-        }
-        
-        .disconnected {
-            background-color: #FFCDD2;
-            color: #C62828;
-        }
-        
-        .stats {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #E3F2FD;
-            border-radius: 4px;
-        }
-        
-        .stats h3 {
-            margin-top: 0;
-            color: #1565C0;
-        }
-        
-        .stats-item {
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-        
-        .stats-value {
-            font-weight: bold;
-            color: #0D47A1;
-        }
-        
-        .log-container {
-            height: 150px;
-            overflow-y: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 10px;
-            margin-top: 20px;
-            background-color: #f9f9f9;
-            font-family: monospace;
-        }
-        
-        .instructions {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #FFF9C4;
-            border-radius: 4px;
-        }
-        
-        .instructions h3 {
-            margin-top: 0;
-            color: #F57F17;
-        }
-        
-        .instructions ul {
-            margin-bottom: 0;
-        }
-    </style>
+    <title>Face Detection Test</title>
+    <link rel="stylesheet" href="../static/css/basic_face.css">
 </head>
 <body>
-    <h1>Face Detection Test</h1>
-    
-    <div class="container">
-        <div id="status" class="disconnected">Disconnected</div>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a class="nav-logo">Optitech Eye</a>
+            <button class="hamburger">☰</button>
+            <div class="nav-menu">
+                <a href="/exercise_full">Eye-Exercise</a>
+                <a href="/cataract">Cataract</a>
+                <a href="/benefits">Glaucoma-Test</a>
+                <a href="/eye_fatigue" class="active">Eye Fatigue</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="face-header">
+        <div class="face-header-content">
+            <h1>Face Detection Test</h1>
+            <p>Test your camera for accurate face detection to assess eye movement and positioning.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="face-container">
+        <div id="face-status" class="face-disconnected">Disconnected</div>
         
-        <div class="video-container">
+        <div class="face-video-container">
             <img id="video" alt="Webcam feed" />
         </div>
         
-        <div class="controls">
+        <div class="face-controls">
             <button id="startBtn" onclick="startStream()">Start Camera</button>
             <button id="stopBtn" onclick="stopStream()" disabled>Stop Camera</button>
         </div>
         
-        <div class="stats">
+        <div class="face-stats">
             <h3>Detection Statistics</h3>
-            <div class="stats-item">
-                Faces Detected: <span id="facesCount" class="stats-value">0</span>
+            <div class="face-stats-item">
+                Faces Detected: <span id="facesCount" class="face-stats-value">0</span>
             </div>
         </div>
         
-        <div class="instructions">
+        <div class="face-instructions">
             <h3>Troubleshooting Tips</h3>
             <ul>
                 <li>Make sure you're in a well-lit environment</li>
@@ -171,16 +60,38 @@
         </div>
     </div>
     
-    <div class="container">
+    <div class="face-container">
         <h2>Detection Log</h2>
-        <div id="log" class="log-container"></div>
+        <div id="log" class="face-log-container"></div>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        © 2025 Optitech Eye Program | Powered by Alphacode
+    </footer>
+
     <script>
+        // Toggle hamburger menu on mobile
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close menu when a link is clicked
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.textContent = '☰';
+            });
+        });
+
         let ws = null;
         const startBtn = document.getElementById('startBtn');
         const stopBtn = document.getElementById('stopBtn');
-        const status = document.getElementById('status');
+        const status = document.getElementById('face-status');
         const video = document.getElementById('video');
         const facesCount = document.getElementById('facesCount');
         const log = document.getElementById('log');
@@ -208,7 +119,7 @@
                 ws = new WebSocket("ws://localhost:8000/ws/face");
                 
                 ws.onopen = function() {
-                    status.className = 'connected';
+                    status.className = 'face-connected';
                     status.textContent = 'Connected';
                     addLogEntry('WebSocket connection established');
                 };
@@ -262,7 +173,7 @@
         }
         
         function resetUI() {
-            status.className = 'disconnected';
+            status.className = 'face-disconnected';
             status.textContent = 'Disconnected';
             startBtn.disabled = false;
             stopBtn.disabled = true;

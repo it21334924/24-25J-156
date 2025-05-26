@@ -7,89 +7,132 @@
     <link rel="stylesheet" href="../static/css/gStyle.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Glaucoma Detection System</h1>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a class="nav-logo">Optitech Eye</a>
+            <button class="hamburger">☰</button>
+            <div class="nav-menu">
+                <a href="/exercise_full">Eye-Exercise</a>
+                <a href="/cataract">Cataract</a>
+                <a href="/benefits" class="active">Glaucoma-Test</a>
+                <a href="/eye_fatigue">Eye Fatigue</a>
+                <a href="/color_test">Color Blindness Test</a>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Header Section -->
+    <header class="glaucoma-header">
+        <div class="glaucoma-header-content">
+            <h1>Glaucoma Detection System</h1>
+            <p>Assess your risk of glaucoma with our advanced detection tools.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="glaucoma-main-container">
         <!-- Questionnaire Section -->
-        <div class="section">
+        <div class="glaucoma-section">
             <h2>Risk Assessment Form</h2>
-            <p class="info-text">Please fill out the questionnaire to enable detection methods.</p>
+            <p class="glaucoma-info-text">Please fill out the questionnaire to enable detection methods.</p>
             <form id="questionnaire-form">
-                <div class="form-group">
+                <div class="glaucoma-form-group">
                     <label for="age">Age:</label>
-                    <input type="number" id="age" name="age" required min="0" max="120" placeholder="Enter your age (e.g., 45)" required>
+                    <input type="number" id="age" name="age" required min="0" max="120" placeholder="Enter your age (e.g., 45)">
                 </div>
-                <div class="form-group">
+                <div class="glaucoma-form-group">
                     <label for="family_history">Family History of Glaucoma:</label>
-                    <select name="family_history" id="family_history"  required>
+                    <select name="family_history" id="family_history" required>
                         <option value="">Check all that apply</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="glaucoma-form-group">
                     <label>Symptoms:</label>
-                    <div class="checkbox-group">
+                    <div class="glaucoma-checkbox-group">
                         <label><input type="checkbox" name="symptoms" value="Blurred Vision"> Blurred Vision</label>
                         <label><input type="checkbox" name="symptoms" value="Eye Pain"> Eye Pain</label>
                         <label><input type="checkbox" name="symptoms" value="Halos"> Halos</label>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="glaucoma-form-group">
                     <label for="iop_history">Intraocular Pressure (if known):</label>
                     <input type="number" step="0.1" id="iop_history" name="iop_history" min="0" placeholder="Enter pressure in mmHg (e.g., 21.5)">
                 </div>
-                <div class="form-group">
+                <div class="glaucoma-form-group">
                     <label for="medical_history">Other Medical History:</label>
                     <textarea name="medical_history" id="medical_history" rows="3" maxlength="500" placeholder="Describe any relevant conditions (e.g., diabetes, hypertension)"></textarea>
                 </div>
-                <button type="submit" class="btn btn-submit">Submit</button>
+                <button type="submit" class="glaucoma-btn glaucoma-btn-submit">Submit</button>
             </form>
         </div>
 
         <!-- Method Selection -->
-        <div class="section hidden" id="method-section">
+        <div class="glaucoma-section glaucoma-hidden" id="method-section">
             <h2>Select Detection Method</h2>
-            <div class="method-selection">
+            <div class="glaucoma-method-selection">
                 <label><input type="radio" name="method" value="realtime"> Real-Time Webcam</label>
                 <label><input type="radio" name="method" value="upload"> Upload Video</label>
             </div>
         </div>
 
         <!-- Detection Controls -->
-        <div class="section hidden" id="control-section">
-            <div class="button-group">
-                <button id="start-btn" class="btn btn-start hidden">Start Detection</button>
-                <div class="hidden" id="upload-group">
-                    <input type="file" id="video-file" accept="video/*" class="file-input">
-                    <button id="upload-btn" class="btn btn-analyze">Analyze Video</button>
+        <div class="glaucoma-section glaucoma-hidden" id="control-section">
+            <div class="glaucoma-button-group">
+                <button id="start-btn" class="glaucoma-btn glaucoma-btn-start glaucoma-hidden">Start Detection</button>
+                <div class="glaucoma-hidden" id="upload-group">
+                    <input type="file" id="video-file" accept="video/*" class="glaucoma-file-input">
+                    <button id="upload-btn" class="glaucoma-btn glaucoma-btn-analyze">Analyze Video</button>
                 </div>
-                <button id="stop-btn" class="btn btn-end hidden">Stop</button>
-                <button id="reset-btn" class="btn btn-reset" onclick="location.reload()">Reset</button>
+                <button id="stop-btn" class="glaucoma-btn glaucoma-btn-end glaucoma-hidden">Stop</button>
+                <button id="reset-btn" class="glaucoma-btn glaucoma-btn-reset" onclick="location.reload()">Reset</button>
             </div>
-            <p id="recording-message" class="info-text hidden">Recording 10 seconds of webcam footage...</p>
-            <p id="analyzing-message" class="info-text hidden">Analyzing recorded footage...</p>
+            <p id="recording-message" class="glaucoma-info-text glaucoma-hidden">Recording 10 seconds of webcam footage...</p>
+            <p id="analyzing-message" class="glaucoma-info-text glaucoma-hidden">Analyzing recorded footage...</p>
         </div>
 
         <!-- Video Feed -->
-        <div class="section hidden" id="video-section">
+        <div class="glaucoma-section glaucoma-hidden" id="video-section">
             <h2>Video Feed</h2>
-            <img id="video-feed" class="video-feed hidden" src="" alt="Video Feed">
+            <img id="video-feed" class="glaucoma-video-feed glaucoma-hidden" src="" alt="Video Feed">
         </div>
 
         <!-- Results -->
-        <div class="section hidden" id="results">
+        <div class="glaucoma-section glaucoma-hidden" id="results">
             <h2>Prediction</h2>
             <p><strong>Glaucoma Probability:</strong> <span id="glaucoma-prob">N/A</span>%</p>
             <p><strong>Healthy Probability:</strong> <span id="healthy-prob">N/A</span>%</p>
             <p><strong>Pupil Radius:</strong> <span id="pupil-radius">N/A</span> px</p>
             <p><strong>Pupil Area:</strong> <span id="pupil-area">N/A</span> px²</p>
             <p><strong>Circularity:</strong> <span id="pupil-circularity">N/A</span></p>
-            <button id="compare-btn" class="btn btn-submit" disabled>Compare and Predict</button>
+            <button id="compare-btn" class="glaucoma-btn glaucoma-btn-submit" disabled>Compare and Predict</button>
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        © 2025 Optitech Eye Program | Powered by Alphacode
+    </footer>
+
     <script>
+        // Toggle hamburger menu on mobile
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.textContent = '☰';
+            });
+        });
+
         const form = document.getElementById("questionnaire-form");
         const methodSection = document.getElementById("method-section");
         const controlSection = document.getElementById("control-section");
@@ -98,7 +141,7 @@
         const uploadBtn = document.getElementById("upload-btn");
         const videoFile = document.getElementById("video-file");
         const videoSection = document.getElementById("video-section");
-        const videoFeed = document.getElementById("video-feed");
+        const videoElement = document.getElementById("video-feed");
         const results = document.getElementById("results");
         const stopBtn = document.getElementById("stop-btn");
         const compareBtn = document.getElementById("compare-btn");
@@ -116,32 +159,22 @@
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
             
-            // Validate form inputs
             const age = parseInt(document.getElementById("age").value);
             const familyHistory = document.getElementById("family_history").value;
             const iopHistory = document.getElementById("iop_history").value;
             const medicalHistory = document.getElementById("medical_history").value;
 
             let errors = [];
-            if (!age || age < 0 || age > 120) {
-                errors.push("Age must be between 0 and 120.");
-            }
-            if (!familyHistory) {
-                errors.push("Please select a family history option.");
-            }
-            if (iopHistory && (parseFloat(iopHistory) < 0)) {
-                errors.push("Intraocular pressure must be non-negative.");
-            }
-            if (medicalHistory && medicalHistory.length > 500) {
-                errors.push("Medical history must not exceed 500 characters.");
-            }
+            if (!age || age < 0 || age > 120) errors.push("Age must be between 0 and 120.");
+            if (!familyHistory) errors.push("Please select a family history option.");
+            if (iopHistory && parseFloat(iopHistory) < 0) errors.push("Intraocular pressure must be non-negative.");
+            if (medicalHistory && medicalHistory.length > 500) errors.push("Medical history must not exceed 500 characters.");
 
             if (errors.length > 0) {
                 alert("Please fix the following errors:\n- " + errors.join("\n- "));
                 return;
             }
 
-            // Calculate questionnaire score
             let qScore = 0;
             qScore += 0.02 * Math.max(0, age - 40);
             if (familyHistory === "Yes") qScore += 0.3;
@@ -158,37 +191,36 @@
             const res = await fetch("/submit_questionnaire", { method: "POST", body: formData });
             const data = await res.json();
             if (data.status === "questionnaire submitted") {
-                methodSection.classList.remove("hidden");
+                methodSection.classList.remove("glaucoma-hidden");
             }
         });
 
         methodSection.addEventListener("change", e => {
             selectedMethod = e.target.value;
-            controlSection.classList.remove("hidden");
-            startBtn.classList.toggle("hidden", selectedMethod !== "realtime");
-            uploadGroup.classList.toggle("hidden", selectedMethod !== "upload");
+            controlSection.classList.remove("glaucoma-hidden");
+            startBtn.classList.toggle("glaucoma-hidden", selectedMethod !== "realtime");
+            uploadGroup.classList.toggle("glaucoma-hidden", selectedMethod !== "upload");
             compareBtn.disabled = true;
-            compareBtn.classList.add("btn-disabled");
+            compareBtn.classList.add("glaucoma-btn-disabled");
         });
 
         startBtn.addEventListener("click", () => {
             alert("Keep distance 5-10 inches with camera and eye!");
-            videoFeed.src = "/video_feed?type=webcam";
-            videoFeed.classList.remove("hidden");
-            videoSection.classList.remove("hidden");
-            stopBtn.classList.remove("hidden");
-            startBtn.classList.add("hidden");
-            results.classList.remove("hidden");
-            recordingMessage.classList.remove("hidden");
+            videoElement.src = "/video_feed?type=webcam";
+            videoElement.classList.remove("glaucoma-hidden");
+            videoSection.classList.remove("glaucoma-hidden");
+            stopBtn.classList.remove("glaucoma-hidden");
+            startBtn.classList.add("glaucoma-hidden");
+            results.classList.remove("glaucoma-hidden");
+            recordingMessage.classList.remove("glaucoma-hidden");
             compareBtn.disabled = true;
-            compareBtn.classList.add("btn-disabled");
-            // Set timeout to trigger prediction after 10s
+            compareBtn.classList.add("glaucoma-btn-disabled");
             recordingTimeout = setTimeout(async () => {
-                recordingMessage.classList.add("hidden");
-                analyzingMessage.classList.remove("hidden");
+                recordingMessage.classList.add("glaucoma-hidden");
+                analyzingMessage.classList.remove("glaucoma-hidden");
                 const res = await fetch("/compare_predict");
                 const data = await res.json();
-                analyzingMessage.classList.add("hidden");
+                analyzingMessage.classList.add("glaucoma-hidden");
                 console.log("Auto-predict response:", data);
                 if (data.error) {
                     alert(data.error);
@@ -196,9 +228,9 @@
                 }
                 glaucomaProb.textContent = data.glaucoma_prob;
                 healthyProb.textContent = data.healthy_prob;
-                compareBtn.classList.add("btn-disabled");
+                compareBtn.classList.add("glaucoma-btn-disabled");
                 compareBtn.disabled = true;
-            }, 10000); // 10 seconds
+            }, 10000);
         });
 
         uploadBtn.addEventListener("click", async () => {
@@ -210,48 +242,48 @@
 
             await fetch("/analyze_video", { method: "POST", body: formData });
 
-            videoFeed.src = "/video_feed?type=uploaded";
-            videoFeed.classList.remove("hidden");
-            videoSection.classList.remove("hidden");
-            stopBtn.classList.remove("hidden");
-            uploadGroup.classList.add("hidden");
-            results.classList.remove("hidden");
+            videoElement.src = "/video_feed?type=uploaded";
+            videoElement.classList.remove("glaucoma-hidden");
+            videoSection.classList.remove("glaucoma-hidden");
+            stopBtn.classList.remove("glaucoma-hidden");
+            uploadGroup.classList.add("glaucoma-hidden");
+            results.classList.remove("glaucoma-hidden");
             compareBtn.disabled = false;
-            compareBtn.classList.remove("btn-disabled");
+            compareBtn.classList.remove("glaucoma-btn-disabled");
         });
 
         stopBtn.addEventListener("click", async () => {
             const res = await fetch("/stop_feed", { method: "POST" });
             const data = await res.json();
             console.log("Stop feed response:", data);
-            videoFeed.src = "";
-            videoFeed.classList.add("hidden");
-            videoSection.classList.add("hidden");
-            stopBtn.classList.add("hidden");
-            startBtn.classList.toggle("hidden", selectedMethod !== "realtime");
-            uploadGroup.classList.toggle("hidden", selectedMethod !== "upload");
-            recordingMessage.classList.add("hidden");
+            videoElement.src = "";
+            videoElement.classList.add("glaucoma-hidden");
+            videoSection.classList.add("glaucoma-hidden");
+            stopBtn.classList.add("glaucoma-hidden");
+            startBtn.classList.toggle("glaucoma-hidden", selectedMethod !== "realtime");
+            uploadGroup.classList.toggle("glaucoma-hidden", selectedMethod !== "upload");
+            recordingMessage.classList.add("glaucoma-hidden");
             if (recordingTimeout) {
                 clearTimeout(recordingTimeout);
                 recordingTimeout = null;
             }
             if (data.has_data) {
                 compareBtn.disabled = false;
-                compareBtn.classList.remove("btn-disabled");
+                compareBtn.classList.remove("glaucoma-btn-disabled");
             } else {
                 alert("No data available for prediction.");
             }
         });
 
         compareBtn.addEventListener("click", async () => {
-            if (!videoFeed.src || videoFeed.classList.contains("hidden")) {
+            if (!videoElement.src || videoElement.classList.contains("glaucoma-hidden")) {
                 alert("Please start detection to get a prediction.");
                 return;
             }
-            analyzingMessage.classList.remove("hidden");
+            analyzingMessage.classList.remove("glaucoma-hidden");
             const res = await fetch("/compare_predict");
             const data = await res.json();
-            analyzingMessage.classList.add("hidden");
+            analyzingMessage.classList.add("glaucoma-hidden");
             console.log("Manual predict response:", data);
             if (data.error) {
                 alert(data.error);
@@ -259,7 +291,7 @@
             }
             glaucomaProb.textContent = data.glaucoma_prob;
             healthyProb.textContent = data.healthy_prob;
-            compareBtn.classList.add("btn-disabled");
+            compareBtn.classList.add("glaucoma-btn-disabled");
             compareBtn.disabled = true;
         });
 

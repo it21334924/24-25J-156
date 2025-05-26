@@ -76,7 +76,7 @@ nav {
 }
 
 /* Header Styles */
-.color-test-header {
+.cataract-header {
     height: 50vh;
     background: linear-gradient(135deg, var(--primary-color), var(--success-color));
     display: flex;
@@ -88,23 +88,23 @@ nav {
     margin-top: 60px; /* Offset for fixed navbar */
 }
 
-.color-test-header-content {
+.cataract-header-content {
     max-width: 800px;
 }
 
-.color-test-header h1 {
+.cataract-header h1 {
     font-size: 3rem;
     margin-bottom: 20px;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.color-test-header p {
+.cataract-header p {
     font-size: 1.4rem;
     color: rgba(255, 255, 255, 0.9);
 }
 
 /* Main Content Styles */
-.color-test-main-container {
+.cataract-container {
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
@@ -113,75 +113,77 @@ nav {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.color-test-container {
+.cataract-upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
 }
 
-.color-test-progress-container {
-    width: 100%;
-    height: 10px;
-    background-color: #e0e0e0;
+.cataract-file-upload {
+    border: 2px dashed var(--primary-color);
     border-radius: 5px;
-    overflow: hidden;
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.cataract-file-upload.active {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.cataract-file-upload i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
     margin-bottom: 10px;
 }
 
-.color-test-progress-bar {
-    height: 100%;
-    background-color: var(--success-color);
-    width: 0;
-    transition: width 0.3s ease;
-}
-
-.color-test-step-indicator {
-    font-size: 1.1rem;
-    color: var(--dark-color);
-    margin-bottom: 20px;
-}
-
-.color-test-instruction {
+.cataract-file-upload h3 {
     font-size: 1.5rem;
     color: var(--primary-color);
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
-.color-test-instruction #target-color {
-    font-weight: 600;
-    color: var(--success-color);
+.cataract-file-upload p {
+    font-size: 1rem;
+    color: var(--dark-color);
+    margin: 5px 0;
 }
 
-.color-test-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 10px;
-    max-width: 600px;
-    margin: 0 auto 20px;
+.cataract-file-upload input[type="file"] {
+    display: none;
 }
 
-.color-test-grid > div {
-    width: 100px;
-    height: 100px;
+.cataract-preview-container {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.cataract-image-preview {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid var(--primary-color);
     border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 10px;
 }
 
-.color-test-grid > div:hover {
-    transform: scale(1.05);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+.cataract-file-name {
+    font-size: 1.1rem;
+    color: var(--dark-color);
+    margin-bottom: 15px;
 }
 
-.color-test-controls {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.color-test-primary-btn {
+.cataract-btn {
     padding: 12px 30px;
     font-size: 1.1rem;
     font-weight: 600;
@@ -193,64 +195,114 @@ nav {
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.color-test-primary-btn:hover:not(:disabled) {
+.cataract-btn:hover:not(:disabled) {
     background-color: #2980b9; /* Darker shade of primary color */
     transform: translateY(-2px);
 }
 
-.color-test-primary-btn:disabled {
+.cataract-btn:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
 
-.hidden {
-    display: none;
+.cataract-btn i {
+    margin-right: 8px;
 }
 
-.color-test-results-container {
+.cataract-loading {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.cataract-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--light-color);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.cataract-loading p {
+    font-size: 1.1rem;
+    color: var(--dark-color);
+    margin-top: 10px;
+}
+
+.cataract-error-message {
+    display: none;
+    color: var(--danger-color);
+    font-size: 1.1rem;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.cataract-error-message i {
+    margin-right: 8px;
+}
+
+.cataract-result-container {
+    display: none;
     margin-top: 20px;
     padding: 20px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
 }
 
-.color-test-results-container h2 {
-    font-size: 1.5rem;
-    color: var(--primary-color);
+.cataract-result-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 15px;
 }
 
-.color-test-result-message {
+.cataract-result-header i {
+    font-size: 1.5rem;
+    color: var(--success-color);
+}
+
+.cataract-result-header h2 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.cataract-result-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.cataract-result-image img {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+}
+
+.cataract-result-details {
+    text-align: center;
+}
+
+.cataract-prediction {
     font-size: 1.3rem;
     font-weight: 600;
     color: var(--success-color);
     margin-bottom: 10px;
 }
 
-.color-test-result-details {
+.cataract-result-details p {
     font-size: 1.1rem;
     color: var(--dark-color);
-    margin-bottom: 20px;
-}
-
-.color-test-info {
-    margin: 20px 0;
-    padding: 15px;
-    background-color: var(--light-color);
-    border-radius: 5px;
-}
-
-.color-test-info h3 {
-    font-size: 1.3rem;
-    color: var(--primary-color);
-    margin-bottom: 10px;
-}
-
-.color-test-info p {
-    font-size: 1rem;
-    margin: 5px 0;
 }
 
 /* Footer Styles */
@@ -289,60 +341,44 @@ footer {
         text-align: center;
     }
 
-    .color-test-header {
+    .cataract-header {
         height: 40vh;
     }
 
-    .color-test-header h1 {
+    .cataract-header h1 {
         font-size: 2rem;
     }
 
-    .color-test-header p {
+    .cataract-header p {
         font-size: 1.1rem;
     }
 
-    .color-test-main-container {
+    .cataract-container {
         padding: 15px;
     }
 
-    .color-test-container {
-        padding: 15px;
+    .cataract-file-upload {
+        padding: 20px;
     }
 
-    .color-test-instruction {
+    .cataract-file-upload h3 {
         font-size: 1.3rem;
     }
 
-    .color-test-grid > div {
-        width: 80px;
-        height: 80px;
-    }
-
-    .color-test-primary-btn {
+    .cataract-btn {
         padding: 10px 20px;
         font-size: 1rem;
     }
 
-    .color-test-results-container h2 {
+    .cataract-result-header h2 {
         font-size: 1.3rem;
     }
 
-    .color-test-result-message {
+    .cataract-prediction {
         font-size: 1.1rem;
     }
 
-    .color-test-result-details {
+    .cataract-result-details p {
         font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .color-test-grid {
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    }
-
-    .color-test-grid > div {
-        width: 60px;
-        height: 60px;
     }
 }

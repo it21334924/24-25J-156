@@ -1,77 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Color Blindness Test</title>
-
-  <!-- ✅ Direct paths to static assets -->
-  <link rel="stylesheet" href="/static/css/style.css">
-  <link rel="stylesheet" href="/static/css/color_test.css">
-  <link rel="shortcut icon" href="/static/favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Blindness Test</title>
+    <link rel="stylesheet" href="../static/css/color_test.css">
+    <link rel="shortcut icon" href="/static/favicon.ico">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <a href="/" class="logo">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-          <circle cx="12" cy="12" r="3"></circle>
-        </svg>
-        OptiTech
-      </a>
-      <div class="nav">
-        <a href="/eye_fatigue">Eye Fatigue Test</a>
-        <a href="/color_test" class="active">Color Blindness Test</a>
-      </div>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a class="nav-logo">Optitech Eye</a>
+            <button class="hamburger">☰</button>
+            <div class="nav-menu">
+                <a href="/exercise_full">Eye-Exercise</a>
+                <a href="/cataract">Cataract</a>
+                <a href="/benefits">Glaucoma-Test</a>
+                <a href="/eye_fatigue">Eye Fatigue</a>
+                <a href="/color_test" class="active">Color Blindness Test</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="color-test-header">
+        <div class="color-test-header-content">
+            <h1>Color Blindness Test</h1>
+            <p>Test your ability to distinguish colors and identify potential color vision deficiencies.</p>
+        </div>
     </header>
 
-    <div class="main-content">
-      <h1>Color Blindness Test</h1>
-      <p class="description">This test helps identify different types of color blindness by testing your ability to recognize different colors.</p>
+    <!-- Main Content -->
+    <div class="color-test-main-container">
+        <div id="test-container" class="color-test-container">
+            <div id="test-progress" class="color-test-progress">
+                <div class="color-test-progress-container">
+                    <div class="color-test-progress-bar" id="progress-bar"></div>
+                </div>
+                <div id="step-indicator" class="color-test-step-indicator">Step <span id="current-step">1</span> of <span id="total-steps">8</span></div>
+            </div>
 
-      <div id="test-container" class="color-test-container">
-        <div id="test-progress">
-          <div class="progress-container">
-            <div class="progress-bar" id="progress-bar"></div>
-          </div>
-          <div id="step-indicator">Step <span id="current-step">1</span> of <span id="total-steps">8</span></div>
+            <div id="test-instruction" class="color-test-instruction">
+                Select the color "<span id="target-color">Red</span>"
+            </div>
+
+            <div id="color-grid" class="color-test-grid">
+                <!-- JavaScript will generate color boxes -->
+            </div>
+
+            <div id="test-controls" class="color-test-controls">
+                <button id="start-test-btn" class="color-test-primary-btn">Start Test</button>
+                <button id="next-step-btn" class="color-test-primary-btn hidden">Next</button>
+            </div>
         </div>
 
-        <div id="test-instruction" class="test-instruction">
-          Select the color "<span id="target-color">Red</span>"
+        <div id="results-container" class="color-test-results-container hidden">
+            <h2>Test Results</h2>
+            <div id="result-message" class="color-test-result-message"></div>
+            <div id="result-details" class="color-test-result-details"></div>
+            <div class="color-test-info">
+                <h3>About Color Blindness</h3>
+                <p><strong>Red-Green Color Blindness:</strong> Difficulty distinguishing between reds and greens.</p>
+                <p><strong>Blue-Yellow Color Blindness:</strong> Difficulty distinguishing between blues and yellows.</p>
+                <p><strong>Complete Color Blindness:</strong> Inability to see colors, only grayscale.</p>
+            </div>
+            <button id="retry-test-btn" class="color-test-primary-btn">Take Test Again</button>
         </div>
-
-        <div id="color-grid" class="color-grid">
-          <!-- JavaScript will generate color boxes -->
-        </div>
-
-        <div id="test-controls" class="test-controls">
-          <button id="start-test-btn" class="primary-btn">Start Test</button>
-          <button id="next-step-btn" class="primary-btn hidden">Next</button>
-        </div>
-      </div>
-
-      <div id="results-container" class="results-container hidden">
-        <h2>Test Results</h2>
-        <div id="result-message" class="result-message"></div>
-        <div id="result-details" class="result-details"></div>
-        <div class="color-blindness-info">
-          <h3>About Color Blindness</h3>
-          <p><strong>Red-Green Color Blindness:</strong> Difficulty distinguishing between reds and greens.</p>
-          <p><strong>Blue-Yellow Color Blindness:</strong> Difficulty distinguishing between blues and yellows.</p>
-          <p><strong>Complete Color Blindness:</strong> Inability to see colors, only grayscale.</p>
-        </div>
-        <button id="retry-test-btn" class="primary-btn">Take Test Again</button>
-      </div>
     </div>
 
+    <!-- Footer -->
     <footer>
-      <p>&copy; 24-25J-156 OptiTech</p>
+        © 2025 Optitech Eye Program | Powered by Alphacode
     </footer>
-  </div>
 
-  <!-- ✅ Direct JS path -->
-  <script src="/static/js/color_test.js"></script>
+    <!-- JavaScript -->
+    <script src="/static/js/color_test.js"></script>
+    <script>
+        // Toggle hamburger menu on mobile
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close menu when a link is clicked
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.textContent = '☰';
+            });
+        });
+    </script>
 </body>
 </html>
