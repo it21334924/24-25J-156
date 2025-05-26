@@ -9,6 +9,7 @@ import os
 from app.fatigue_api import fatigue_router
 from app.exercise_api import exercise_router
 from app.cataract_api import cataract_router
+from app.glaucoma_api import glaucoma_router
 
 app = FastAPI(
     title="Eye Health Platform",
@@ -37,6 +38,7 @@ templates = Jinja2Templates(directory=TEMPLATES_DIR)
 app.include_router(fatigue_router)
 app.include_router(exercise_router)
 app.include_router(cataract_router)
+app.include_router(glaucoma_router)
 
 # ✅ Root endpoint (default homepage)
 @app.get("/", response_class=HTMLResponse)
