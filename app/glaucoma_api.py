@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Request
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Request, APIRouter
 from fastapi.responses import StreamingResponse, JSONResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -14,6 +14,9 @@ from typing import Optional
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+
+
+glaucoma_router = APIRouter()
 
 app = FastAPI(title="Glaucoma Detection API", version="1.0.0")
 
@@ -109,7 +112,7 @@ async def generate_frames(source):
             logging.info(f"Removed uploaded video: {uploaded_video_path}")
         logging.info("generate_frames ended.")
 
-@app.get("/", response_class=HTMLResponse)
+@app.get("/glaucomaPage", response_class=HTMLResponse)
 async def index(request: Request):
     return templates.TemplateResponse("gDetection.html", {"request": request})
 
@@ -232,7 +235,7 @@ async def compare_predict():
 if __name__ == '__main__':
     import uvicorn
     uvicorn.run(
-        "glaucoma_app:app",
+        "glaucoma_api:app",
         host="127.0.0.1",
         port=8000,
         reload=True,
