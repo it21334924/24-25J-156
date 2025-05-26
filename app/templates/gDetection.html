@@ -17,12 +17,12 @@
             <form id="questionnaire-form">
                 <div class="form-group">
                     <label for="age">Age:</label>
-                    <input type="number" id="age" name="age" required min="0" max="120" required>
+                    <input type="number" id="age" name="age" required min="0" max="120" placeholder="Enter your age (e.g., 45)" required>
                 </div>
                 <div class="form-group">
                     <label for="family_history">Family History of Glaucoma:</label>
-                    <select name="family_history" id="family_history" required>
-                        <option value="">-- Select --</option>
+                    <select name="family_history" id="family_history"  required>
+                        <option value="">Check all that apply</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>
@@ -37,11 +37,11 @@
                 </div>
                 <div class="form-group">
                     <label for="iop_history">Intraocular Pressure (if known):</label>
-                    <input type="number" step="0.1" id="iop_history" name="iop_history" min="0">
+                    <input type="number" step="0.1" id="iop_history" name="iop_history" min="0" placeholder="Enter pressure in mmHg (e.g., 21.5)">
                 </div>
                 <div class="form-group">
                     <label for="medical_history">Other Medical History:</label>
-                    <textarea name="medical_history" id="medical_history" rows="3" maxlength="500"></textarea>
+                    <textarea name="medical_history" id="medical_history" rows="3" maxlength="500" placeholder="Describe any relevant conditions (e.g., diabetes, hypertension)"></textarea>
                 </div>
                 <button type="submit" class="btn btn-submit">Submit</button>
             </form>

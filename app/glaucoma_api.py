@@ -4,7 +4,7 @@ from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Request, API
 from fastapi.responses import StreamingResponse, JSONResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from glaucoma_detection import PupilDetector, RealTimeGlaucomaDetection
+from app.glaucoma_detection import PupilDetector, RealTimeGlaucomaDetection
 import os
 from werkzeug.utils import secure_filename
 import math
