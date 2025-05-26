@@ -112,11 +112,11 @@ async def generate_frames(source):
             logging.info(f"Removed uploaded video: {uploaded_video_path}")
         logging.info("generate_frames ended.")
 
-@app.get("/glaucomaPage", response_class=HTMLResponse)
+@glaucoma_router.get("/glaucomaPage", response_class=HTMLResponse)
 async def index(request: Request):
     return templates.TemplateResponse("gDetection.html", {"request": request})
 
-@app.get("/video_feed")
+@glaucoma_router.get("/video_feed")
 async def video_feed(request: Request, type: str = "webcam"):
     global detection_active, uploaded_video_path
     if detection_active:
@@ -136,7 +136,7 @@ async def video_feed(request: Request, type: str = "webcam"):
         media_type="multipart/x-mixed-replace; boundary=frame"
     )
 
-@app.post("/stop_feed")
+@glaucoma_router.post("/stop_feed")
 async def stop_feed():
     global detection_active, uploaded_video_path, recent_frames
     detection_active = False
@@ -148,12 +148,12 @@ async def stop_feed():
     logging.info(f"Stop feed: has_data={has_data}")
     return JSONResponse(content={'status': 'stopped', 'has_data': has_data})
 
-@app.get("/pupil_dynamics")
+@glaucoma_router.get("/pupil_dynamics")
 async def pupil_dynamics():
     global last_features
     return JSONResponse(content=last_features)
 
-@app.post("/analyze_video")
+@glaucoma_router.post("/analyze_video")
 async def analyze_video(video: UploadFile = File(...)):
     global detection_active, uploaded_video_path
     if detection_active:
@@ -172,7 +172,7 @@ async def analyze_video(video: UploadFile = File(...)):
     logging.info(f"Saved uploaded video: {uploaded_video_path}")
     return JSONResponse(content={'status': 'started'})
 
-@app.post("/submit_questionnaire")
+@glaucoma_router.post("/submit_questionnaire")
 async def submit_questionnaire(
     age: int = Form(...),
     family_history: str = Form(...),
@@ -193,7 +193,7 @@ async def submit_questionnaire(
     logging.info("Questionnaire submitted")
     return JSONResponse(content={'status': 'questionnaire submitted'})
 
-@app.get("/compare_predict")
+@glaucoma_router.get("/compare_predict")
 async def compare_predict():
     global recent_frames, last_features, questionnaire_data
     if not questionnaire_data:

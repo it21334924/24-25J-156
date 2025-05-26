@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, APIRouter
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
@@ -35,9 +35,9 @@ templates = Jinja2Templates(directory=TEMPLATES_DIR)
 app.include_router(glaucoma_router)
 
 # ✅ Root endpoint (default homepage)
-@app.get("/glaucomaPage", response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse)
 async def root(request: Request):
-    return templates.TemplateResponse("gDetection.html", {"request": request})
+    return templates.TemplateResponse("home.html", {"request": request})
 
 
 # ✅ Start the server
