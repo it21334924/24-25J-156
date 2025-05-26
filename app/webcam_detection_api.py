@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras.models import load_model
+import asyncio
 
 class PupilDetector:
     def __init__(self):
@@ -165,9 +166,74 @@ class RealTimeGlaucomaDetection:
         
         return processed_frame, detection_result, glaucoma_probability, features
     
+    async def run_webcam_detection_async(self):
+        """
+        Run real-time glaucoma detection using webcam (async version for FastAPI)
+        """
+        cap = cv2.VideoCapture(0)
+        
+        if not cap.isOpened():
+            print("Error: Could not open webcam.")
+            return
+            
+        print("Starting real-time detection. Press 'q' to quit.")
+        
+        try:
+            while True:
+                ret, frame = cap.read()
+                if not ret:
+                    print("Error: Failed to capture frame from webcam.")
+                    break
+                
+                # Convert to grayscale for eye detection
+                gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                
+                # Detect eyes
+                eyes = self.pupil_detector.eye_cascade.detectMultiScale(gray, 1.3, 5)
+                
+                # If no eyes detected
+                if len(eyes) == 0:
+                    cv2.putText(frame, "No eyes detected", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+                
+                # Process each detected eye
+                for (ex, ey, ew, eh) in eyes:
+                    # Extract eye region
+                    eye_frame = frame[ey:ey+eh, ex:ex+ew]
+                    
+                    # Check if eye frame is valid
+                    if eye_frame.size == 0:
+                        continue
+                    
+                    # Analyze eye
+                    processed_eye, result, prob, features = self.analyze_eye_frame(eye_frame)
+                    
+                    # Replace eye region in original frame
+                    frame[ey:ey+eh, ex:ex+ew] = processed_eye
+                    
+                    # Draw rectangle around eye
+                    cv2.rectangle(frame, (ex, ey), (ex+ew, ey+eh), (255, 0, 0), 2)
+                    
+                    # Display pupil info if detected
+                    if features['pupil_detected']:
+                        pupil_info = f"Pupil R: {features['pupil_radius']}"
+                        cv2.putText(frame, pupil_info, (ex, ey-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 1)
+                
+                # Display the resulting frame
+                cv2.imshow('Glaucoma Detection', frame)
+                
+                if cv2.waitKey(1) & 0xFF == ord('q'):
+                    break
+                
+                # Add small delay to prevent blocking the event loop
+                await asyncio.sleep(0.01)
+        
+        finally:
+            cap.release()
+            cv2.destroyAllWindows()
+    
     def run_webcam_detection(self):
         """
-        Run real-time glaucoma detection using webcam
+        Run real-time glaucoma detection using webcam (synchronous version for backward compatibility)
         """
         cap = cv2.VideoCapture(0)
         

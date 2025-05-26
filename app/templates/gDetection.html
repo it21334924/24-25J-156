@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glaucoma Detection</title>
-    <link rel="stylesheet" href="/static/css/gStyle.css">
+    <link rel="stylesheet" href="../static/css/gStyle.css">
 </head>
 <body>
     <div class="container">
-        <h1>AI-Powered Glaucoma Detection</h1>
+        <h1>Glaucoma Detection System</h1>
 
         <!-- Questionnaire Section -->
         <div class="section">
@@ -17,7 +17,7 @@
             <form id="questionnaire-form">
                 <div class="form-group">
                     <label for="age">Age:</label>
-                    <input type="number" id="age" name="age" required min="0" max="120">
+                    <input type="number" id="age" name="age" required min="0" max="120" required>
                 </div>
                 <div class="form-group">
                     <label for="family_history">Family History of Glaucoma:</label>
@@ -180,12 +180,11 @@
             startBtn.classList.add("hidden");
             results.classList.remove("hidden");
             recordingMessage.classList.remove("hidden");
-            // Set timeout to enable prediction after 10s
+            compareBtn.disabled = true;
+            compareBtn.classList.add("btn-disabled");
+            // Set timeout to trigger prediction after 10s
             recordingTimeout = setTimeout(async () => {
                 recordingMessage.classList.add("hidden");
-                compareBtn.disabled = false;
-                compareBtn.classList.remove("btn-disabled");
-                // Auto-trigger prediction
                 analyzingMessage.classList.remove("hidden");
                 const res = await fetch("/compare_predict");
                 const data = await res.json();
@@ -232,28 +231,15 @@
             startBtn.classList.toggle("hidden", selectedMethod !== "realtime");
             uploadGroup.classList.toggle("hidden", selectedMethod !== "upload");
             recordingMessage.classList.add("hidden");
-            compareBtn.disabled = true;
-            compareBtn.classList.add("btn-disabled");
             if (recordingTimeout) {
                 clearTimeout(recordingTimeout);
                 recordingTimeout = null;
             }
-            if (data.webcam_ready && selectedMethod === "realtime") {
-                analyzingMessage.classList.remove("hidden");
-                const predictRes = await fetch("/compare_predict");
-                const predictData = await predictRes.json();
-                analyzingMessage.classList.add("hidden");
-                console.log("Predict response:", predictData);
-                if (predictData.error) {
-                    alert(predictData.error);
-                    return;
-                }
-                glaucomaProb.textContent = predictData.glaucoma_prob;
-                healthyProb.textContent = predictData.healthy_prob;
-                compareBtn.classList.add("btn-disabled");
-                compareBtn.disabled = true;
-            } else if (selectedMethod === "realtime") {
-                alert("No webcam footage available for analysis. Please record for at least a few seconds.");
+            if (data.has_data) {
+                compareBtn.disabled = false;
+                compareBtn.classList.remove("btn-disabled");
+            } else {
+                alert("No data available for prediction.");
             }
         });
 
