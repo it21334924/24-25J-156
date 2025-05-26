@@ -25,7 +25,7 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 templates = Jinja2Templates(directory="app/templates")
 
 # Initialize detector and state
-detector = RealTimeGlaucomaDetection(model_path='models/best_glaucoma_model.keras')
+detector = RealTimeGlaucomaDetection(model_path='app/utils/best_glaucoma_model.keras')
 detection_active = False
 last_features = {'pupil_radius': 0, 'pupil_area': 0, 'pupil_circularity': 0}
 uploaded_video_path = None
