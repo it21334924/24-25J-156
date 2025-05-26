@@ -113,11 +113,11 @@ The final system achieved:
 
 4. Run the application:
    ```bash
-   python main.py
+   python app.py
    # In a separate terminal
-   python main.py
+   npm start
    ```
 
 
 
-<p align="center">© 2025 OptiTech Team • Project #24-25J-156</
+<p align="center">© 2025 OptiTech Team • Project #24-25J-156</p>

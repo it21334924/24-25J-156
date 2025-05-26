@@ -101,7 +101,7 @@ class PupilDetector:
         return features
 
 class RealTimeGlaucomaDetection:
-    def __init__(self, model_path='models/best_glaucoma_model.keras', threshold=0.5):
+    def __init__(self, model_path='app/utils/best_glaucoma_model.keras', threshold=0.5):
         self.model_path = model_path
         self.pupil_detector = PupilDetector()
         self.model = None
