@@ -4,7 +4,7 @@ from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Request
 from fastapi.responses import StreamingResponse, JSONResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from app.glaucoma_api import PupilDetector, RealTimeGlaucomaDetection
+from glaucoma_detection import PupilDetector, RealTimeGlaucomaDetection
 import os
 from werkzeug.utils import secure_filename
 import math
@@ -232,7 +232,7 @@ async def compare_predict():
 if __name__ == '__main__':
     import uvicorn
     uvicorn.run(
-        "main:app",
+        "glaucoma_app:app",
         host="127.0.0.1",
         port=8000,
         reload=True,
