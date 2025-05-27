@@ -3,7 +3,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 import cv2
 import os
-import dlib
+# import dlib
 import numpy as np
 from joblib import load
 import base64
@@ -20,9 +20,9 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")  # templates folder inside /
 MODEL_DIR = os.path.join(BASE_DIR, "utils")
 
 # Load models
-model = load(os.path.join(MODEL_DIR, "random_forest_model.pkl"))
-predictor = dlib.shape_predictor(os.path.join(MODEL_DIR, "shape_predictor_68_face_landmarks.dat"))
-detector = dlib.get_frontal_face_detector()
+# model = load(os.path.join(MODEL_DIR, "random_forest_model.pkl"))
+# predictor = dlib.shape_predictor(os.path.join(MODEL_DIR, "shape_predictor_68_face_landmarks.dat"))
+# detector = dlib.get_frontal_face_detector()
 
 @exercise_router.get("/eye-test")
 def get_index():

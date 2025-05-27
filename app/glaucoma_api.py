@@ -12,7 +12,6 @@ import logging
 import asyncio
 from typing import Optional
 
-# Configure logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
