@@ -45,11 +45,11 @@ def get_exercise_full():
     return FileResponse(os.path.join(TEMPLATES_DIR, "exercise_full.html"))
 
 # # Load models once
-model_path = "random_forest_model.pkl"
-predictor_path = "shape_predictor_68_face_landmarks.dat"
-model = load(model_path)
-detector = dlib.get_frontal_face_detector()
-predictor = dlib.shape_predictor(predictor_path)
+# model_path = "random_forest_model.pkl"
+# predictor_path = "shape_predictor_68_face_landmarks.dat"
+# model = load(model_path)
+# detector = dlib.get_frontal_face_detector()
+# predictor = dlib.shape_predictor(predictor_path)
 
 label_map = {
     0: "TopLeft", 1: "TopCenter", 2: "TopRight",
