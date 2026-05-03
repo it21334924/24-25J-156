@@ -20,10 +20,10 @@ The **OptiTech** system integrates Artificial Intelligence, Machine Learning, an
 ## 👥 Team Members
 
 Our dedicated team of innovators includes:
-- **IT21334924 - Herath H. M. S. C.**: Cataract detection component
-- **IT21263880 - Swarnajith T. H. M. P.**: Real-time eye exercises component
-- **IT21341540 - Senanayaka W. S. H. M.**: Eye fatigue and color blindness detection
-- **IT21340796 - Hettiarachchi H. W. R. A.**: Real-time pupil tracking mechanism
+- **Sahan Herath**: Cataract detection component
+- **Prabhash Swarnajith**: Real-time eye exercises component
+- **Heshan Senanayaka**: Eye fatigue and color blindness detection
+- **Rashmika Hettiarachchi**: Real-time pupil tracking mechanism
 
 ---
 
